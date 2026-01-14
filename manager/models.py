@@ -45,3 +45,15 @@ class Task(models.Model):
     assignees = models.ManyToManyField(Worker, related_name="assigned_tasks")
 
 
+class Team(models.Model):
+    name = models.CharField(max_length=250, unique=True)
+    members = models.ManyToManyField(Worker, related_name="teams")
+
+    def __str__(self):
+        return self.name
+
+
+class Project(models.Model):
+    name = models.CharField(max_length=250)
+    description = models.TextField()
+    teams = models.ManyToManyField(Team, related_name="projects")
