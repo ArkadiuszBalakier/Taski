@@ -26,8 +26,15 @@ class TaskAdmin(admin.ModelAdmin):
 @admin.register(Project)
 class ProjectAdmin(admin.ModelAdmin):
     list_display = ("name", "description")
+    filter_horizontal = ("teams",)
+
+
+@admin.register(Team)
+class TeamAdmin(admin.ModelAdmin):
+    list_display = ("name",)
+    filter_horizontal = ("members",)
+
 
 admin.site.register(Position)
 admin.site.register(TaskType)
 admin.site.register(Tag)
-admin.site.register(Team)
