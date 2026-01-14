@@ -24,6 +24,20 @@ class Worker(AbstractUser):
     position = models.ForeignKey(Position, on_delete=models.CASCADE, related_name="workers")
 
 
+class Team(models.Model):
+    name = models.CharField(max_length=250, unique=True)
+    members = models.ManyToManyField(Worker, related_name="teams")
+
+    def __str__(self):
+        return self.name
+
+
+class Project(models.Model):
+    name = models.CharField(max_length=250)
+    description = models.TextField()
+    teams = models.ManyToManyField(Team, related_name="projects")
+
+
 class Task(models.Model):
     CHOICES = [
         ("Urgent", "Urgent"),
@@ -43,17 +57,4 @@ class Task(models.Model):
     )
     task_type = models.ForeignKey(TaskType, on_delete=models.CASCADE, related_name="tasks")
     assignees = models.ManyToManyField(Worker, related_name="assigned_tasks")
-
-
-class Team(models.Model):
-    name = models.CharField(max_length=250, unique=True)
-    members = models.ManyToManyField(Worker, related_name="teams")
-
-    def __str__(self):
-        return self.name
-
-
-class Project(models.Model):
-    name = models.CharField(max_length=250)
-    description = models.TextField()
-    teams = models.ManyToManyField(Team, related_name="projects")
+    project = models.ForeignKey(Project, on_delete=models.CASCADE, related_name="tasks")
