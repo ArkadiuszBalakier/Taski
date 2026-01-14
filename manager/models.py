@@ -46,6 +46,8 @@ class Project(models.Model):
     description = models.TextField()
     teams = models.ManyToManyField(Team, related_name="projects")
 
+    def __str__(self):
+        return self.name
 
 class Task(models.Model):
     CHOICES = [
@@ -67,5 +69,6 @@ class Task(models.Model):
     task_type = models.ForeignKey(
         TaskType, on_delete=models.CASCADE, related_name="tasks"
     )
+    tags = models.ManyToManyField(Tag, related_name="tasks")
     assignees = models.ManyToManyField(Worker, related_name="assigned_tasks")
     project = models.ForeignKey(Project, on_delete=models.CASCADE, related_name="tasks")
