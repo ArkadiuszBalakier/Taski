@@ -1,60 +1,62 @@
 {% extends "base.html" %}
 {% load static %}
 
-{% block title %} Logowanie - Taski {% endblock %}
+{% block title %} Sign In - Taski Manager {% endblock %}
 
 {% block body_class %} sign-in-basic {% endblock %}
 
+{% block navbar %}
+<div class="container position-sticky z-index-sticky top-0">
+  <div class="row">
+    <div class="col-12">
+      {% include 'includes/navigation.html' %}
+    </div>
+  </div>
+</div>
+{% endblock navbar %}
+
 {% block content %}
-  {% include 'includes/navigation.html' %} 
-  
-  <div class="page-header align-items-start min-vh-100" 
-       style="background-image: url('{% static 'img/bg-smart-home.jpg' %}');" 
-       loading="lazy">
-    <span class="mask bg-gradient-dark opacity-6"></span>
-    <div class="container my-auto">
-      <div class="row">
-        <div class="col-lg-4 col-md-8 col-12 mx-auto">
-          <div class="card z-index-0 fadeIn3 fadeInBottom">
-            <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
-              <div class="bg-gradient-primary shadow-primary border-radius-lg py-3 pe-1">
-                <h4 class="text-white font-weight-bolder text-center mt-2 mb-0">
-                  Panel Taski
-                </h4>
-                <div class="row mt-3">
-                  <p class="mb-0 text-white text-center text-sm">
-                    Podaj dane, aby zarządzać zadaniami
-                  </p>
-                </div>
+<div class="page-header align-items-start min-vh-100"
+     style="background-image: url('{% static 'img/city-profile.jpg' %}');"
+     loading="lazy">
+  <span class="mask bg-gradient-dark opacity-6"></span>
+  <div class="container my-auto">
+    <div class="row">
+      <div class="col-lg-4 col-md-8 col-12 mx-auto">
+        <div class="card z-index-0 fadeIn3 fadeInBottom border-radius-xl shadow-lg">
+          <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+            <div class="bg-gradient-dark shadow-dark border-radius-lg py-3 pe-1">
+              <h4 class="text-white font-weight-bolder text-center mt-2 mb-0">Taski Manager</h4>
+              <p class="text-white text-center text-sm mb-0">Sign in to your account</p>
+            </div>
+          </div>
+          <div class="card-body">
+            <form role="form" method="post" action="" class="text-start">
+              {% csrf_token %}
+
+              <div class="input-group input-group-static mb-4">
+                <label>Username</label>
+                <input type="text" name="username" class="form-control" placeholder="Enter your username">
               </div>
-            </div>
-            <div class="card-body">
-              <form role="form" method="post" action="" class="text-start">
-                {% csrf_token %}
 
-                {% if form.errors %}
-                  <p class="text-danger text-center text-sm">Błędny login lub hasło.</p>
-                {% endif %}
+              <div class="input-group input-group-static mb-4">
+                <label>Password</label>
+                <input type="password" name="password" class="form-control" placeholder="••••••••">
+              </div>
 
-                <div class="input-group input-group-outline mb-3">
-                  <label class="form-label">Użytkownik</label>
-                  <input type="text" name="username" class="form-control">
-                </div>
-                
-                <div class="input-group input-group-outline mb-3">
-                  <label class="form-label">Hasło</label>
-                  <input type="password" name="password" class="form-control">
-                </div>
+              <div class="text-center">
+                <button type="submit" class="btn bg-gradient-dark w-100 my-4 mb-2 border-radius-lg">Sign In</button>
+              </div>
 
-                <div class="text-center">
-                  <button type="submit" name="login" 
-                          class="btn bg-gradient-primary w-100 my-4 mb-2">Zaloguj się</button>
-                </div>
-              </form>
-            </div>
+              <p class="mt-4 text-sm text-center">
+                Don't have an account?
+                <a href="#" class="text-dark font-weight-bold">Sign up</a>
+              </p>
+            </form>
           </div>
         </div>
       </div>
     </div>
   </div>
+</div>
 {% endblock content %}
