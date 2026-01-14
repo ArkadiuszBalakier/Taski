@@ -1,6 +1,7 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models
 
+
 class Position(models.Model):
     name = models.CharField(max_length=250)
 
@@ -10,18 +11,22 @@ class Position(models.Model):
 
 class Tag(models.Model):
     name = models.CharField(max_length=250, unique=True)
+
     def __str__(self):
         return self.name
 
 
 class TaskType(models.Model):
     name = models.CharField(max_length=250)
+
     def __str__(self):
         return self.name
 
 
 class Worker(AbstractUser):
-    position = models.ForeignKey(Position, on_delete=models.CASCADE, related_name="workers")
+    position = models.ForeignKey(
+        Position, on_delete=models.CASCADE, related_name="workers"
+    )
 
 
 class Team(models.Model):
@@ -55,6 +60,8 @@ class Task(models.Model):
         choices=CHOICES,
         default="Medium",
     )
-    task_type = models.ForeignKey(TaskType, on_delete=models.CASCADE, related_name="tasks")
+    task_type = models.ForeignKey(
+        TaskType, on_delete=models.CASCADE, related_name="tasks"
+    )
     assignees = models.ManyToManyField(Worker, related_name="assigned_tasks")
     project = models.ForeignKey(Project, on_delete=models.CASCADE, related_name="tasks")
