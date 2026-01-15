@@ -13,7 +13,7 @@ def task_stats(request):
             .count(),
             "user_tasks_names": user_tasks.values_list("name", flat=True),
             "user_urgent_names": user_tasks.filter(
-                priority="Urgent", is_complite=False
+                priority="Urgent", is_completed=False
             ).values_list("name", flat=True),
             "user_project_names": Project.objects.filter(
                 teams__members=request.user
