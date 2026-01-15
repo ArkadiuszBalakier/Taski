@@ -5,16 +5,6 @@
 
 {% block body_class %} sign-in-basic {% endblock %}
 
-{% block navbar %}
-<div class="container position-sticky z-index-sticky top-0">
-  <div class="row">
-    <div class="col-12">
-      {% include 'includes/navigation.html' %}
-    </div>
-  </div>
-</div>
-{% endblock navbar %}
-
 {% block content %}
 <div class="page-header align-items-start min-vh-100"
      style="background-image: url('{% static 'img/city-profile.jpg' %}');"

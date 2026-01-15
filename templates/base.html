@@ -32,11 +32,25 @@
 
 <body class="bg-gray-200 {% block body_class %}{% endblock %}">
 
-  {% block navbar %}{% endblock %}
+  {% if user.is_authenticated %}
+    {% block navbar %}
+      <div class="container position-sticky z-index-sticky top-0">
+        <div class="row">
+        <div class="col-12">
+          {% include 'includes/navigation.html' %}
+        </div>
+        </div>
+      </div>
+    {% endblock navbar %}
+  {% endif %}
 
   {% block content %}{% endblock %}
 
-  {% block footer %}{% endblock %}
+  {% block footer %}
+    {% if user.is_authenticated %}
+      {% include "includes/footer.html" %}
+    {% endif %}
+  {% endblock %}
 
   <script src="{% static 'js/core/popper.min.js' %}"></script>
   <script src="{% static 'js/core/bootstrap.min.js' %}"></script>

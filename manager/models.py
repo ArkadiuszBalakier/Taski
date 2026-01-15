@@ -49,6 +49,7 @@ class Project(models.Model):
     def __str__(self):
         return self.name
 
+
 class Task(models.Model):
     CHOICES = [
         ("Urgent", "Urgent"),
@@ -72,3 +73,6 @@ class Task(models.Model):
     tags = models.ManyToManyField(Tag, related_name="tasks")
     assignees = models.ManyToManyField(Worker, related_name="assigned_tasks")
     project = models.ForeignKey(Project, on_delete=models.CASCADE, related_name="tasks")
+
+    class Meta:
+        ordering = ["is_completed", "deadline"]
