@@ -75,4 +75,4 @@ class Task(models.Model):
     project = models.ForeignKey(Project, on_delete=models.CASCADE, related_name="tasks")
 
     class Meta:
-        ordering = ["is_completed", "priority"]
+        ordering = ["is_completed", "-priority"]

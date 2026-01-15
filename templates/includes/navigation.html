@@ -1,62 +1,55 @@
 {% load static %}
-{% block navbar %}
-<nav class="navbar navbar-expand-lg position-absolute top-0 z-index-3 w-100 shadow-none my-3">
-  <div class="container"> <div class="navbar navbar-expand-lg blur border-radius-xl top-0 z-index-3 shadow py-2 px-3 w-100">
-      <div class="container-fluid px-0">
-        <a class="navbar-brand font-weight-bolder ms-sm-3 text-sm" href="{% url 'manager:index' %}">
-          TASKI MANAGER
-        </a>
-        <button class="navbar-toggler shadow-none ms-2" type="button" data-bs-toggle="collapse" data-bs-target="#navigation">
-          <span class="navbar-toggler-icon mt-2">
-            <span class="navbar-toggler-bar bar1"></span>
-            <span class="navbar-toggler-bar bar2"></span>
-            <span class="navbar-toggler-bar bar3"></span>
-          </span>
-        </button>
-        <div class="collapse navbar-collapse pt-3 pb-2 py-lg-0 w-100" id="navigation">
-          <ul class="navbar-nav navbar-nav-hover ms-auto">
-            <li class="nav-item mx-2">
-              <a class="nav-link ps-2 d-flex cursor-pointer align-items-center" href="{% url 'manager:tasks-list' %}">
-                <i class="material-icons opacity-6 me-2 text-md">assignment</i>
-                Tasks
-              </a>
-            </li>
-            <li class="nav-item mx-2">
-              <a class="nav-link ps-2 d-flex cursor-pointer align-items-center" href="#">
-                <i class="material-icons opacity-6 me-2 text-md">folder</i>
-                Projects
-              </a>
-            </li>
-            <li class="nav-item mx-2">
-              <a class="nav-link ps-2 d-flex cursor-pointer align-items-center" href="#">
-                <i class="material-icons opacity-6 me-2 text-md">people</i>
-                Team
-              </a>
-            </li>
-            <li class="nav-item dropdown dropdown-hover mx-2">
-              <a class="nav-link ps-2 d-flex cursor-pointer align-items-center" id="dropdownMenuUser" data-bs-toggle="dropdown">
-                <i class="material-icons opacity-6 me-2 text-md">account_circle</i>
-                Account
-                <img src="{% static 'img/down-arrow-dark.svg' %}" alt="down-arrow" class="arrow ms-auto ms-md-2">
-              </a>
-              <div class="dropdown-menu dropdown-menu-end dropdown-menu-animation p-3 border-radius-lg mt-0 mt-lg-3" aria-labelledby="dropdownMenuUser">
-                {% if request.user.is_authenticated %}
-                  <h6 class="dropdown-header text-dark font-weight-bolder px-1">Welcome, {{ request.user.username }}</h6>
-                  <a href="#" class="dropdown-item border-radius-md">Profile</a>
-                  <hr class="horizontal dark my-2">
-                  <form method="post" action="{% url 'logout' %}">
-                    {% csrf_token %}
-                    <button type="submit" class="dropdown-item border-radius-md text-danger">Logout</button>
-                  </form>
-                {% else %}
-                  <a href="{% url 'login' %}" class="dropdown-item border-radius-md">Sign In</a>
-                {% endif %}
-              </div>
-            </li>
-          </ul>
+<div class="container position-absolute start-0 end-0 z-index-sticky">
+  <div class="row">
+    <div class="col-12 mx-auto">
+      <nav class="navbar navbar-expand-lg blur border-radius-xl shadow-blur py-2 px-4 mt-4">
+        <div class="container-fluid px-0">
+          <a class="navbar-brand font-weight-bolder ms-sm-3 text-sm" href="{% url 'manager:index' %}">
+            TASKI MANAGER
+          </a>
+
+          <button class="navbar-toggler shadow-none ms-2" type="button" data-bs-toggle="collapse" data-bs-target="#navigation">
+            <span class="navbar-toggler-icon mt-2">
+              <span class="navbar-toggler-bar bar1"></span>
+              <span class="navbar-toggler-bar bar2"></span>
+              <span class="navbar-toggler-bar bar3"></span>
+            </span>
+          </button>
+
+          <div class="collapse navbar-collapse pt-3 pb-2 py-lg-0 w-100" id="navigation">
+            <ul class="navbar-nav navbar-nav-hover ms-auto">
+              <li class="nav-item mx-2">
+                <a class="nav-link ps-2 d-flex cursor-pointer align-items-center" href="{% url 'manager:tasks-list' %}">
+                  <i class="material-icons opacity-6 me-2 text-md">assignment</i> Tasks
+                </a>
+              </li>
+              <li class="nav-item mx-2">
+                <a class="nav-link ps-2 d-flex cursor-pointer align-items-center" href="#">
+                  <i class="material-icons opacity-6 me-2 text-md">folder</i> Projects
+                </a>
+              </li>
+              <li class="nav-item dropdown dropdown-hover mx-2">
+                <a class="nav-link ps-2 d-flex cursor-pointer align-items-center" id="dropdownMenuUser" data-bs-toggle="dropdown">
+                  <i class="material-icons opacity-6 me-2 text-md">account_circle</i>
+                  Account
+                  <img src="{% static 'img/down-arrow-dark.svg' %}" alt="down-arrow" class="arrow ms-auto ms-md-2">
+                </a>
+                <div class="dropdown-menu dropdown-menu-end dropdown-menu-animation p-3 border-radius-lg mt-0 mt-lg-3" aria-labelledby="dropdownMenuUser">
+                  {% if request.user.is_authenticated %}
+                    <h6 class="dropdown-header text-dark font-weight-bolder px-1">Welcome, {{ request.user.username }}</h6>
+                    <a href="#" class="dropdown-item border-radius-md">Profile</a>
+                    <hr class="horizontal dark my-2">
+                    <form method="post" action="{% url 'logout' %}">
+                      {% csrf_token %}
+                      <button type="submit" class="dropdown-item border-radius-md text-danger border-0 bg-transparent text-start w-100">Logout</button>
+                    </form>
+                  {% endif %}
+                </div>
+              </li>
+            </ul>
+          </div>
         </div>
-      </div>
+      </nav>
     </div>
   </div>
-</nav>
-{% endblock %}
+</div>
