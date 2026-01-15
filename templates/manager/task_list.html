@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="card card-body blur shadow-blur mx-3 mx-md-4 mt-n6"
+     style="background: rgba(255, 255, 255, 0.4) !important; backdrop-filter: blur(20px) saturate(160%) !important;">
+
+    <h3 class="mb-4 text-center">All My Tasks ({{ object_list.count }})</h3>
+
+    <ul class="list-group bg-transparent">
+        {% for task in object_list %}
+        <li class="list-group-item d-flex justify-content-between align-items-center border-0 mb-2 move-on-hover"
+            style="background: rgba(255, 255, 255, 0.2) !important;
+                   box-shadow: none !important;">
+
+            <div class="d-flex align-items-center">
+                <i class="material-icons me-3 {% if task.is_completed %}text-success{% else %}text-secondary{% endif %}">
+                    {% if task.is_completed %}check_circle{% else %}radio_button_unchecked{% endif %}
+                </i>
+                <span class="text-dark font-weight-bold">{{ task.name }}</span>
+            </div>
+
+            <div class="d-flex align-items-center gap-2">
+                <span class="badge {% if task.priority == 'High' %}bg-gradient-primary{% else %}bg-gradient-info{% endif %} btn-sm">
+                    {{ task.priority }}
+                </span>
+                <i class="material-icons text-sm text-dark cursor-pointer">edit</i>
+                <i class="material-icons text-sm text-danger cursor-pointer">delete</i>
+            </div>
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}
