@@ -3,7 +3,7 @@ from django.shortcuts import render
 from django.views import generic
 from django.contrib.auth.mixins import LoginRequiredMixin
 
-from .models import Task, Project, Worker
+from .models import Task, Project, Worker, Team
 
 
 @login_required
@@ -18,4 +18,9 @@ class TaskListView(LoginRequiredMixin, generic.ListView):
 
 class ProjectListView(LoginRequiredMixin, generic.ListView):
     model = Project
+    paginate_by = 5
+
+
+class TeamListView(LoginRequiredMixin, generic.ListView):
+    model = Team
     paginate_by = 5
