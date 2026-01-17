@@ -14,3 +14,7 @@ def index(request):
 class TaskListView(LoginRequiredMixin, generic.ListView):
     model = Task
     paginate_by = 5
+
+class ProjectListView(LoginRequiredMixin, generic.ListView):
+    model = Project
+    paginate_by = 5
