@@ -1,4 +1,4 @@
-from .models import Task, Project
+from .models import Task, Project, Team
 
 
 def task_stats(request):
@@ -8,6 +8,7 @@ def task_stats(request):
         return {
             "user_tasks_num": user_tasks.count(),
             "user_urgent_num": user_tasks.filter(priority="Urgent").count(),
+            "user_teams": Team.objects.filter(members=request.user),
             "user_projects_num": Project.objects.filter(teams__members=request.user)
             .distinct()
             .count(),
