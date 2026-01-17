@@ -21,7 +21,7 @@ def task_stats(request):
             ).values_list("name", flat=True),
         }
     return {
-        'user_tasks_num': 0,
-        'user_urgent_num': 0,
-        'user_projects_num': 0,
+        "user_tasks_num": 0,
+        "user_urgent_num": 0,
+        "user_projects_num": 0,
     }

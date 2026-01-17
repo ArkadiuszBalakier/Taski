@@ -4,14 +4,13 @@ from django.db import migrations
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('manager', '0003_task_tags'),
+        ("manager", "0003_task_tags"),
     ]
 
     operations = [
         migrations.AlterModelOptions(
-            name='task',
-            options={'ordering': ['is_completed', '-priority']},
+            name="task",
+            options={"ordering": ["is_completed", "-priority"]},
         ),
     ]
