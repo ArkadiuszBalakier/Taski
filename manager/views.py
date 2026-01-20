@@ -4,7 +4,7 @@ from django.urls import reverse_lazy
 from django.views import generic
 from django.contrib.auth.mixins import LoginRequiredMixin
 
-from manager.forms import WorkerUpdateForm
+from manager.forms import WorkerUpdateForm, WorkerCreationForm
 from .models import Task, Project, Worker, Team
 
 
@@ -34,6 +34,13 @@ class WorkerDetailView(LoginRequiredMixin, generic.DetailView):
 
     def get_object(self):
         return Worker.objects.get(pk=self.request.user.pk)
+
+
+class WorkerCreateView(LoginRequiredMixin, generic.CreateView):
+    model = Worker
+    form_class = WorkerCreationForm
+    template_name = "manager/worker_form.html"
+    success_url = reverse_lazy("manager:worker-profile")
 
 
 class WorkerProfileUpdateView(LoginRequiredMixin, generic.UpdateView):

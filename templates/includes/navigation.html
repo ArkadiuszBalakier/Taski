@@ -8,7 +8,8 @@
             TASKI MANAGER
           </a>
 
-          <button class="navbar-toggler shadow-none ms-2" type="button" data-bs-toggle="collapse" data-bs-target="#navigation">
+          <button class="navbar-toggler shadow-none ms-2" type="button" data-bs-toggle="collapse"
+                  data-bs-target="#navigation">
             <span class="navbar-toggler-icon mt-2">
               <span class="navbar-toggler-bar bar1"></span>
               <span class="navbar-toggler-bar bar2"></span>
@@ -24,7 +25,8 @@
                 </a>
               </li>
               <li class="nav-item mx-2">
-                <a class="nav-link ps-2 d-flex cursor-pointer align-items-center" href="{% url 'manager:projects-list' %}">
+                <a class="nav-link ps-2 d-flex cursor-pointer align-items-center"
+                   href="{% url 'manager:projects-list' %}">
                   <i class="material-icons opacity-6 me-2 text-md">folder</i> Projects
                 </a>
               </li>
@@ -34,19 +36,27 @@
                 </a>
               </li>
               <li class="nav-item dropdown dropdown-hover mx-2">
-                <a class="nav-link ps-2 d-flex cursor-pointer align-items-center" id="dropdownMenuUser" data-bs-toggle="dropdown">
+                <a class="nav-link ps-2 d-flex cursor-pointer align-items-center" id="dropdownMenuUser"
+                   data-bs-toggle="dropdown">
                   <i class="material-icons opacity-6 me-2 text-md">account_circle</i>
                   Account
                   <img src="{% static 'img/down-arrow-dark.svg' %}" alt="down-arrow" class="arrow ms-auto ms-md-2">
                 </a>
-                <div class="dropdown-menu dropdown-menu-end dropdown-menu-animation p-3 border-radius-lg mt-0 mt-lg-3" aria-labelledby="dropdownMenuUser">
+                <div class="dropdown-menu dropdown-menu-end dropdown-menu-animation p-3 border-radius-lg mt-0 mt-lg-3"
+                     aria-labelledby="dropdownMenuUser">
                   {% if request.user.is_authenticated %}
-                    <h6 class="dropdown-header text-dark font-weight-bolder px-1">Welcome, {{ request.user.username }}</h6>
+                    <h6 class="dropdown-header text-dark font-weight-bolder px-1">
+                      Welcome, {{ request.user.username }}</h6>
                     <a href="{% url 'manager:worker-profile' %}" class="dropdown-item border-radius-md">Profile</a>
+                    <a href="{% url 'manager:worker-create' %}" class="dropdown-item border-radius-md">Create new
+                      worker</a>
                     <hr class="horizontal dark my-2">
                     <form method="post" action="{% url 'logout' %}">
                       {% csrf_token %}
-                      <button type="submit" class="dropdown-item border-radius-md text-danger border-0 bg-transparent text-start w-100">Logout</button>
+                      <button type="submit"
+                              class="dropdown-item border-radius-md text-danger border-0 bg-transparent text-start w-100">
+                        Logout
+                      </button>
                     </form>
                   {% endif %}
                 </div>

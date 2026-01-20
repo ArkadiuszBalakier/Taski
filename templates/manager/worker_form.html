@@ -19,12 +19,18 @@
                       <label class="form-label">{{ form.first_name.label }}</label>
                       {{ form.first_name }}
                     </div>
+                    {% if form.first_name.errors %}
+                      <span class="text-danger text-xs">{{ form.first_name.errors.0 }}</span>
+                    {% endif %}
                   </div>
                   <div class="col-md-6">
                     <div class="input-group input-group-dynamic mb-4 {% if form.last_name.value %}is-filled{% endif %}">
                       <label class="form-label">{{ form.last_name.label }}</label>
                       {{ form.last_name }}
                     </div>
+                    {% if form.last_name.errors %}
+                      <span class="text-danger text-xs">{{ form.last_name.errors.0 }}</span>
+                    {% endif %}
                   </div>
                 </div>
 
@@ -43,6 +49,9 @@
                       <label class="form-label">{{ form.email.label }}</label>
                       {{ form.email }}
                     </div>
+                    {% if form.email.errors %}
+                      <span class="text-danger text-xs">{{ form.email.errors.0 }}</span>
+                    {% endif %}
                   </div>
                 </div>
               </div>
@@ -51,6 +60,9 @@
                   <label>{{ form.position.label }}</label>
                   {{ form.position }}
                 </div>
+                {% if form.position.errors %}
+                  <span class="text-danger text-xs">{{ form.position.errors.0 }}</span>
+                {% endif %}
               </div>
 
               {% if not object %}
@@ -60,12 +72,18 @@
                       <label class="form-label">Password</label>
                       {{ form.password1 }}
                     </div>
+                    {% if form.password1.errors %}
+                      <span class="text-danger text-xs">{{ form.password1.errors.0 }}</span>
+                    {% endif %}
                   </div>
                   <div class="col-md-6">
                     <div class="input-group input-group-dynamic mb-4">
                       <label class="form-label">Password confirmation</label>
                       {{ form.password2 }}
                     </div>
+                    {% if form.password2.errors %}
+                      <span class="text-danger text-xs">{{ form.password2.errors.0 }}</span>
+                    {% endif %}
                   </div>
                 </div>
               {% endif %}
