@@ -24,3 +24,11 @@ class ProjectListView(LoginRequiredMixin, generic.ListView):
 class TeamListView(LoginRequiredMixin, generic.ListView):
     model = Team
     paginate_by = 5
+
+
+class WorkerDetailView(LoginRequiredMixin, generic.DetailView):
+    model = Worker
+    context_object_name = "worker_profile"
+
+    def get_object(self):
+        return Worker.objects.get(pk=self.request.user.pk)
