@@ -1,4 +1,6 @@
+from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required
+from django.db.models import Count
 from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views import generic
@@ -28,12 +30,25 @@ class TeamListView(LoginRequiredMixin, generic.ListView):
     paginate_by = 5
 
 
+class WorkerListView(LoginRequiredMixin, generic.ListView):
+    model = Worker
+    paginate_by = 5
+    queryset = (
+        get_user_model()
+        .objects.select_related("position")
+        .annotate(
+            tasks_count=Count("assigned_tasks"),
+            projects_count=Count("teams__projects", distinct=True),
+        )
+    )
+
+
 class WorkerDetailView(LoginRequiredMixin, generic.DetailView):
     model = Worker
     context_object_name = "worker_profile"
 
     def get_object(self):
-        return Worker.objects.get(pk=self.request.user.pk)
+        return get_user_model().objects.get(pk=self.request.user.pk)
 
 
 class WorkerCreateView(LoginRequiredMixin, generic.CreateView):

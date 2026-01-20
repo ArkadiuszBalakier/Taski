@@ -1,51 +1,27 @@
-{% extends "base.html" %}
+{% if is_paginated %}
+  <nav class="mt-4">
+    <ul class="pagination pagination-primary justify-content-center">
 
-{% block content %}
-<div class="container mt-5">
-    <div class="card card-body blur shadow-blur mx-3 mx-md-4 mt-n6"
-         style="background: rgba(255, 255, 255, 0.8) !important;
-                backdrop-filter: blur(10px) saturate(120%) !important;">
+      {% if page_obj.has_previous %}
+        <li class="page-item">
+          <a class="page-link" href="?page={{ page_obj.previous_page_number }}">
+            <i class="material-icons text-sm">chevron_left</i>
+          </a>
+        </li>
+      {% endif %}
 
-        <h3 class="mb-4 text-center text-dark font-weight-bold">All My Tasks ({{ object_list.count }})</h3>
+      <li class="page-item active">
+        <span class="page-link text-white">{{ page_obj.number }}</span>
+      </li>
 
-        <ul class="list-group bg-transparent">
-            {% for task in object_list %}
-            <li class="list-group-item d-flex justify-content-between align-items-center border-0 mb-2 move-on-hover"
-                style="background: rgba(255, 255, 255, 0.5) !important;
-                       border-radius: 10px !important;
-                       box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1) !important;">
+      {% if page_obj.has_next %}
+        <li class="page-item">
+          <a class="page-link" href="?page={{ page_obj.next_page_number }}">
+            <i class="material-icons text-sm">chevron_right</i>
+          </a>
+        </li>
+      {% endif %}
 
-                <div class="d-flex align-items-center">
-                    <i class="material-icons me-3 {% if task.is_completed %}text-success{% else %}text-secondary{% endif %}">
-                        {% if task.is_completed %}check_circle{% else %}radio_button_unchecked{% endif %}
-                    </i>
-                    <span class="text-dark font-weight-bold">{{ task.name }}</span>
-                </div>
-
-                <div class="d-flex align-items-center gap-2">
-                    <span class="badge {% if task.priority == 'High' %}bg-gradient-primary{% else %}bg-gradient-info{% endif %} btn-sm">
-                        {{ task.priority }}
-                    </span>
-                    <a href="#" class="text-dark"><i class="material-icons text-sm cursor-pointer">edit</i></a>
-                    <a href="#" class="text-danger"><i class="material-icons text-sm cursor-pointer">delete</i></a>
-                </div>
-            </li>
-            {% endfor %}
-        </ul>
-
-        {% if is_paginated %}
-        <nav class="mt-4">
-            <ul class="pagination pagination-primary justify-content-center">
-                {% if page_obj.has_previous %}
-                    <li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}"><i class="material-icons text-sm">chevron_left</i></a></li>
-                {% endif %}
-                <li class="page-item active"><span class="page-link">{{ page_obj.number }}</span></li>
-                {% if page_obj.has_next %}
-                    <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}"><i class="material-icons text-sm">chevron_right</i></a></li>
-                {% endif %}
-            </ul>
-        </nav>
-        {% endif %}
-    </div>
-</div>
-{% endblock %}
+    </ul>
+  </nav>
+{% endif %}

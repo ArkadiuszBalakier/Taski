@@ -2,28 +2,28 @@
 
 {% block content %}
   <div class="container">
-  <div class="row">
-    <div class="col-12 mx-auto">
-<div class="card card-body blur shadow-blur mx-3 mx-md-4 mt-n6 border-0 shadow-none"
-     style="background: rgba(255, 255, 255, 0.8) !important;
+    <div class="row">
+      <div class="col-12 mx-auto">
+        <div class="card card-body blur shadow-blur mx-3 mx-md-4 mt-n6 border-0 shadow-none"
+             style="background: rgba(255, 255, 255, 0.8) !important;
             backdrop-filter: blur(10px) saturate(120%) !important;">
 
-    <h3 class="mb-4 text-center text-dark font-weight-bold">All My Tasks ({{ paginator.count }})</h3>
+          <h3 class="mb-4 text-center text-dark font-weight-bold">All My Tasks ({{ paginator.count }})</h3>
 
-    <ul class="list-group bg-transparent">
-        {% for task in object_list %}
-        <li class="list-group-item d-flex justify-content-between align-items-center border-0 mb-2 move-on-hover"
-            style="background: rgba(255, 255, 255, 0.5) !important;
+          <ul class="list-group bg-transparent">
+            {% for task in object_list %}
+              <li class="list-group-item d-flex align-items-center justify-content-between border-bottom py-3 bg-transparent mb-1 move-on-hover"
+                  style="background: rgba(255, 255, 255, 0.5) !important;
                    border-radius: 10px !important;">
 
-            <div class="d-flex align-items-center">
-                <i class="material-icons me-3 {% if task.is_completed %}text-success{% else %}text-secondary{% endif %}">
+                <div class="d-flex align-items-center">
+                  <i class="material-icons me-3 {% if task.is_completed %}text-success{% else %}text-secondary{% endif %}">
                     {% if task.is_completed %}check_circle{% else %}radio_button_unchecked{% endif %}
-                </i>
-                <span class="text-dark font-weight-bold">{{ task.name }}</span>
-            </div>
+                  </i>
+                  <span class="text-dark font-weight-bold">{{ task.name }}</span>
+                </div>
 
-            <div class="d-flex align-items-center gap-2">
+                <div class="d-flex align-items-center gap-2">
             <span class="badge btn-sm
               {% if task.priority == 'Urgent' %}
                   bg-outline-danger text-danger border-danger
@@ -32,49 +32,49 @@
               {% else %}
                   bg-light text-dark
               {% endif %} shadow-none"
-              style="text-transform: lowercase; letter-spacing: 1px;">
+                  style="text-transform: lowercase; letter-spacing: 1px;">
               {{ task.priority }}
             </span>
-              <div class="d-flex align-items-center gap-3">
-                <a href="#" class="text-secondary opacity-7 hover-primary transition-all">
-                  <i class="material-icons text-sm">edit</i>
-                </a>
-                <a href="#" class="text-secondary opacity-7 hover-danger transition-all">
-                  <i class="material-icons text-sm">delete</i>
-                </a>
-              </div>
-            </div>
-        </li>
-        {% endfor %}
-    </ul>
+                  <div class="d-flex align-items-center gap-3">
+                    <a href="#" class="text-secondary opacity-7 hover-primary transition-all">
+                      <i class="material-icons text-sm">edit</i>
+                    </a>
+                    <a href="#" class="text-secondary opacity-7 hover-danger transition-all">
+                      <i class="material-icons text-sm">delete</i>
+                    </a>
+                  </div>
+                </div>
+              </li>
+            {% endfor %}
+          </ul>
 
-    {% if is_paginated %}
-    <nav class="mt-4">
-        <ul class="pagination pagination-primary justify-content-center">
-            {% if page_obj.has_previous %}
-                <li class="page-item">
+          {% if is_paginated %}
+            <nav class="mt-4">
+              <ul class="pagination pagination-primary justify-content-center">
+                {% if page_obj.has_previous %}
+                  <li class="page-item">
                     <a class="page-link" href="?page={{ page_obj.previous_page_number }}">
-                        <span class="material-icons">keyboard_arrow_left</span>
+                      <span class="material-icons">keyboard_arrow_left</span>
                     </a>
+                  </li>
+                {% endif %}
+
+                <li class="page-item active">
+                  <span class="page-link text-white">{{ page_obj.number }}</span>
                 </li>
-            {% endif %}
 
-            <li class="page-item active">
-                <span class="page-link text-white">{{ page_obj.number }}</span>
-            </li>
-
-            {% if page_obj.has_next %}
-                <li class="page-item">
+                {% if page_obj.has_next %}
+                  <li class="page-item">
                     <a class="page-link" href="?page={{ page_obj.next_page_number }}">
-                        <span class="material-icons">keyboard_arrow_right</span>
+                      <span class="material-icons">keyboard_arrow_right</span>
                     </a>
-                </li>
-            {% endif %}
-        </ul>
-    </nav>
-    {% endif %}
-</div>
+                  </li>
+                {% endif %}
+              </ul>
+            </nav>
+          {% endif %}
+        </div>
+      </div>
     </div>
-  </div>
   </div>
 {% endblock %}
