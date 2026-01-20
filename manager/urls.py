@@ -1,6 +1,6 @@
 from django.urls import path
 from . import views
-from .views import TaskListView, ProjectListView, TeamListView, WorkerDetailView
+from .views import TaskListView, ProjectListView, TeamListView, WorkerDetailView, WorkerProfileUpdateView
 
 app_name = "manager"
 urlpatterns = [
@@ -9,4 +9,6 @@ urlpatterns = [
     path("projects/", ProjectListView.as_view(), name="projects-list"),
     path("teams/", TeamListView.as_view(), name="teams-list"),
     path("profile/", WorkerDetailView.as_view(), name="worker-profile"),
+    path("profile/<int:pk>/update", WorkerProfileUpdateView.as_view(), name="worker-update"),
+
 ]
