@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 
-from manager.models import Worker, Team
+from manager.models import Worker, Team, Project
 
 
 class WorkerCreationForm(UserCreationForm):
@@ -41,4 +41,18 @@ class TeamForm(forms.ModelForm):
                     "placeholder": "Select members",
                 }
             ),
+        }
+
+
+class ProjectForm(forms.ModelForm):
+    class Meta:
+        model = Project
+        fields = ("name", "description", "teams")
+        widgets = {
+            "teams": forms.SelectMultiple(
+                attrs={
+                    "class": "form-control tom-select",
+                    "placeholder": "Select teams for this projects...",
+                }
+            )
         }

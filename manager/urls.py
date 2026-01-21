@@ -13,6 +13,7 @@ from .views import (
     TeamUpdateView,
     TeamCreateView,
     ProjectDetailView,
+    ProjectUpdateView,
 )
 
 app_name = "manager"
@@ -21,6 +22,9 @@ urlpatterns = [
     path("tasks/", TaskListView.as_view(), name="tasks-list"),
     path("projects/", ProjectListView.as_view(), name="projects-list"),
     path("projects/<int:pk>", ProjectDetailView.as_view(), name="project-detail"),
+    path(
+        "projects/<int:pk>/update", ProjectUpdateView.as_view(), name="project-update"
+    ),
     path("teams/", TeamListView.as_view(), name="teams-list"),
     path("teams/<int:pk>/", TeamDetailView.as_view(), name="team-detail"),
     path("teams/create", TeamCreateView.as_view(), name="team-create"),
