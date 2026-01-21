@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+{% block content %}
+
+  <div class="card card-body blur shadow-blur mx-3 mx-md-4 mb-4">
+    <section class="py-5">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-7 mx-auto d-flex justify-content-center flex-column">
+            <h3 class="text-center">{{ object|yesno:"Update,Create" }} team</h3>
+
+            <form method="post" autocomplete="off">
+              {% csrf_token %}
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-md-6">
+                    <div
+                        class="input-group input-group-dynamic mb-4">
+                      <label class="form-label">{{ form.name.label }}</label>
+                      {{ form.name }}
+                    </div>
+                    {% if form.name.errors %}
+                      <span class="text-danger text-xs">{{ form.name.errors.0 }}</span>
+                    {% endif %}
+                  </div>
+                  <div class="col-md-6">
+                    <div class="input-group input-group-dynamic mb-4">
+                      <label class="form-label"></label>
+                      {{ form.members }}
+                    </div>
+                    {% if form.members.errors %}
+                      <span class="text-danger text-xs">{{ form.last_name.errors.0 }}</span>
+                    {% endif %}
+                  </div>
+                </div>
+                <div class="row mt-4">
+                  <div class="col-md-12">
+                    <button type="submit" class="btn bg-gradient-dark w-100">{{ object|yesno:"Update,Create" }} team
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <link href="https://cdn.jsdelivr.net/npm/tom-select@2.2.2/dist/css/tom-select.bootstrap5.min.css" rel="stylesheet">
+
+  <script src="https://cdn.jsdelivr.net/npm/tom-select@2.2.2/dist/js/tom-select.complete.min.js"></script>
+
+  <script>
+      document.addEventListener("DOMContentLoaded", function () {
+          new TomSelect(".tom-select", {
+              plugins: ['remove_button'],
+              create: false,
+              persist: false,
+              placeholder: "Search for a worker...",
+              hideSelected: true,
+              maxOptions: 100,
+              render: {
+                  option: function (data, escape) {
+                      return `<div><i class="material-icons text-sm me-2">person</i>${escape(data.text)}</div>`;
+                  },
+                  item: function (data, escape) {
+                      return `<div class="badge bg-gradient-primary m-1" style="border-radius: 5px;">${escape(data.text)}</div>`;
+                  }
+              }
+          });
+      });
+  </script>
+  
+{% endblock %}

@@ -6,7 +6,7 @@ from django.urls import reverse_lazy
 from django.views import generic
 from django.contrib.auth.mixins import LoginRequiredMixin
 
-from manager.forms import WorkerUpdateForm, WorkerCreationForm
+from manager.forms import WorkerUpdateForm, WorkerCreationForm, TeamForm
 from .models import Task, Project, Worker, Team
 
 
@@ -39,7 +39,25 @@ class TeamDetailView(LoginRequiredMixin, generic.DetailView):
         member_id = request.POST.get("member_id")
         if member_id:
             team.members.remove(member_id)
-        return redirect("manager:team-detail", pk=team.pk)
+        return redirect("manager:teams-list")
+
+
+class TeamCreateView(LoginRequiredMixin, generic.CreateView):
+    model = Team
+    form_class = TeamForm
+    template_name = "manager/team_form.html"
+
+    def get_success_url(self):
+        return reverse_lazy("manager:teams-list")
+
+
+class TeamUpdateView(LoginRequiredMixin, generic.UpdateView):
+    model = Team
+    form_class = TeamForm
+    template_name = "manager/team_form.html"
+
+    def get_success_url(self):
+        return reverse_lazy("manager:teams-list")
 
 
 class TeamDeleteView(LoginRequiredMixin, generic.DeleteView):
