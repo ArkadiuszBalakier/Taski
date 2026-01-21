@@ -9,6 +9,7 @@ from .views import (
     WorkerCreateView,
     WorkerListView,
     TeamDetailView,
+    TeamDeleteView,
 )
 
 app_name = "manager"
@@ -18,6 +19,7 @@ urlpatterns = [
     path("projects/", ProjectListView.as_view(), name="projects-list"),
     path("teams/", TeamListView.as_view(), name="teams-list"),
     path("teams/<int:pk>/", TeamDetailView.as_view(), name="team-detail"),
+    path("teams/<int:pk>/delete", TeamDeleteView.as_view(), name="team-delete"),
     path("workers/", WorkerListView.as_view(), name="workers-list"),
     path("worker/profile/", WorkerDetailView.as_view(), name="worker-profile"),
     path(

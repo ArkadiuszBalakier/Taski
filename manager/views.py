@@ -42,6 +42,11 @@ class TeamDetailView(LoginRequiredMixin, generic.DetailView):
         return redirect("manager:team-detail", pk=team.pk)
 
 
+class TeamDeleteView(LoginRequiredMixin, generic.DeleteView):
+    model = Team
+    success_url = reverse_lazy("manager:teams-list")
+
+
 class WorkerListView(LoginRequiredMixin, generic.ListView):
     model = Worker
     paginate_by = 5
