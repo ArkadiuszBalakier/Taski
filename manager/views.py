@@ -29,6 +29,13 @@ class ProjectDetailView(LoginRequiredMixin, generic.DetailView):
     model = Project
     paginate_by = 5
 
+    def post(self, request, *args, **kwargs):
+        project = self.get_object()
+        team_id = request.POST.get("team_id")
+        if team_id:
+            project.teams.remove(team_id)
+        return redirect("manager:projects-list")
+
 
 class TeamListView(LoginRequiredMixin, generic.ListView):
     model = Team
