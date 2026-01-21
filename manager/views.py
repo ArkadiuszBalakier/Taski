@@ -30,6 +30,11 @@ class TeamListView(LoginRequiredMixin, generic.ListView):
     paginate_by = 5
 
 
+class TeamDetailView(LoginRequiredMixin, generic.DetailView):
+    model = Team
+    queryset = Team.objects.prefetch_related("members")
+
+
 class WorkerListView(LoginRequiredMixin, generic.ListView):
     model = Worker
     paginate_by = 5
