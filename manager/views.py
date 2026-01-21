@@ -25,6 +25,11 @@ class ProjectListView(LoginRequiredMixin, generic.ListView):
     paginate_by = 5
 
 
+class ProjectDetailView(LoginRequiredMixin, generic.DetailView):
+    model = Project
+    paginate_by = 5
+
+
 class TeamListView(LoginRequiredMixin, generic.ListView):
     model = Team
     paginate_by = 5
@@ -67,7 +72,7 @@ class TeamDeleteView(LoginRequiredMixin, generic.DeleteView):
 
 class WorkerListView(LoginRequiredMixin, generic.ListView):
     model = Worker
-    paginate_by = 5
+    paginate_by = 4
     queryset = (
         get_user_model()
         .objects.select_related("position")
