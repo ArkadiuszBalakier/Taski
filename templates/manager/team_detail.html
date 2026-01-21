@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <div class="container">
+    <div class="row">
+      <div class="col-12 mx-auto">
+        <div class="card card-body blur shadow-blur mx-3 mx-md-4 mt-n6 border-0 shadow-none"
+             style="background: rgba(255, 255, 255, 0.8) !important;
+            backdrop-filter: blur(10px) saturate(120%) !important;">
+
+          <h3 class="mb-4 text-center text-dark font-weight-bold">Team details</h3>
+
+          <ul class="list-group bg-transparent">
+            {% for user in team.members.all %}
+              <li class="list-group-item d-flex justify-content-between align-items-center border-0 mb-2 move-on-hover"
+                  style="background: rgba(255, 255, 255, 0.5) !important;
+                   border-radius: 10px !important;">
+                <span>{{ user.username }}</span>
+                <span>{{ user.first_name }}</span>
+                <span>{{ user.last_name }}</span>
+                <span>{{ user.position }}</span>
+                <div class="d-flex align-items-center gap-2">
+                  <div class="d-flex align-items-center gap-3">
+                    <a class="text-secondary opacity-7 hover-danger transition-all" href="#">
+                      <i class="material-icons text-sm">delete</i>
+                    </a>
+                  </div>
+                </div>
+              </li>
+            {% endfor %}
+          </ul>
+          {% include "includes/pagination.html" %}
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
