@@ -1,7 +1,7 @@
 from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required
 from django.db.models import Count
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.views import generic
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -33,6 +33,13 @@ class TeamListView(LoginRequiredMixin, generic.ListView):
 class TeamDetailView(LoginRequiredMixin, generic.DetailView):
     model = Team
     queryset = Team.objects.prefetch_related("members")
+
+    def post(self, request, *args, **kwargs):
+        team = self.get_object()
+        member_id = request.POST.get("member_id")
+        if member_id:
+            team.members.remove(member_id)
+        return redirect("manager:team-detail", pk=team.pk)
 
 
 class WorkerListView(LoginRequiredMixin, generic.ListView):

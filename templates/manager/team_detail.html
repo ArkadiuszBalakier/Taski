@@ -11,19 +11,23 @@
           <h3 class="mb-4 text-center text-dark font-weight-bold">Team details</h3>
 
           <ul class="list-group bg-transparent">
-            {% for user in team.members.all %}
+            {% for member in team.members.all %}
               <li class="list-group-item d-flex justify-content-between align-items-center border-0 mb-2 move-on-hover"
                   style="background: rgba(255, 255, 255, 0.5) !important;
                    border-radius: 10px !important;">
-                <span>{{ user.username }}</span>
-                <span>{{ user.first_name }}</span>
-                <span>{{ user.last_name }}</span>
-                <span>{{ user.position }}</span>
+                <span>{{ member.username }}</span>
+                <span>{{ member.first_name }}</span>
+                <span>{{ member.last_name }}</span>
+                <span>{{ member.position }}</span>
                 <div class="d-flex align-items-center gap-2">
                   <div class="d-flex align-items-center gap-3">
-                    <a class="text-secondary opacity-7 hover-danger transition-all" href="#">
-                      <i class="material-icons text-sm">delete</i>
-                    </a>
+                    <form method="post" style="display: inline-block">
+                      {% csrf_token %}
+                      <input type="hidden" name="member_id" value="{{ member.id }}">
+                      <button type="submit" class="btn btn-icon-only">
+                        <i class="material-icons text-sm text-danger">delete</i>
+                      </button>
+                    </form>
                   </div>
                 </div>
               </li>
