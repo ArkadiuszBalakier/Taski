@@ -39,7 +39,7 @@
                   <a href="{% url 'manager:worker-update' pk=worker.id %}" class="btn btn-link text-info">
                     <i class="material-icons text-sm">edit</i>
                   </a>
-                  <a href="#" class="btn btn-link text-danger">
+                  <a href="{% url 'manager:worker-delete' pk=worker.id %}" class="btn btn-link text-danger">
                     <i class="material-icons text-sm">delete</i>
                   </a>
                 </div>
