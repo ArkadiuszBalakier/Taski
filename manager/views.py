@@ -55,6 +55,11 @@ class ProjectCreateView(LoginRequiredMixin, generic.CreateView):
         return reverse_lazy("manager:projects-list")
 
 
+class ProjectDeleteView(LoginRequiredMixin, generic.DeleteView):
+    model = Project
+    success_url = reverse_lazy("manager:projects-list")
+
+
 class TeamListView(LoginRequiredMixin, generic.ListView):
     model = Team
     paginate_by = 5
