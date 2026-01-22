@@ -3,7 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.db.models import Count
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
-from django.views import generic
+from django.views import generic, View
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 from manager.forms import WorkerUpdateForm, WorkerCreationForm, TeamForm, ProjectForm
@@ -42,6 +42,14 @@ class UserTaskListView(LoginRequiredMixin, generic.ListView):
 
     def get_queryset(self):
         return Task.objects.filter(assignees=self.request.user)
+
+
+class TaskToggleView(View):
+    def post(self, request, *args, **kwargs):
+        task = Task.objects.get(pk=self.kwargs["pk"])
+        task.is_completed = not task.is_completed
+        task.save()
+        return redirect("manager:user-tasks-list")
 
 
 class TaskTypeListView(LoginRequiredMixin, generic.ListView):
@@ -168,7 +176,7 @@ class WorkerDetailView(LoginRequiredMixin, generic.DetailView):
     model = Worker
     context_object_name = "worker_profile"
 
-    def get_object(self):
+    def get_object(self, queryset=None):
         return get_user_model().objects.get(pk=self.request.user.pk)
 
 
