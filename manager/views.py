@@ -194,10 +194,6 @@ class PositionListView(LoginRequiredMixin, generic.ListView):
     paginate_by = 5
 
 
-class PositionDetailView(LoginRequiredMixin, generic.DetailView):
-    model = Position
-
-
 class PositionCreateView(LoginRequiredMixin, generic.CreateView):
     model = Position
     fields = "__all__"
