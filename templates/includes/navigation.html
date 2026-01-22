@@ -61,6 +61,10 @@
                     <a href="{% url 'manager:task-type-create' %}" class="dropdown-item border-radius-md">Create new
                       Task type</a>
                     <hr class="horizontal dark my-2">
+                    <a href="{% url 'manager:tags-list' %}" class="dropdown-item border-radius-md">Tags</a>
+                    <a href="{% url 'manager:tag-create' %}" class="dropdown-item border-radius-md">Create new
+                      Tag</a>
+                    <hr class="horizontal dark my-2">
                     <form method="post" action="{% url 'logout' %}">
                       {% csrf_token %}
                       <button type="submit"
