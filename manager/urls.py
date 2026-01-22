@@ -17,12 +17,28 @@ from .views import (
     WorkerDeleteView,
     ProjectCreateView,
     ProjectDeleteView,
+    TaskTypeListView,
+    TaskTypeCreateView,
+    TaskTypeUpdateView,
+    TaskTypeDeleteView,
 )
 
 app_name = "manager"
 urlpatterns = [
     path("", views.index, name="index"),
     path("tasks/", TaskListView.as_view(), name="tasks-list"),
+    path("task-types/", TaskTypeListView.as_view(), name="task-types-list"),
+    path("task-types/create", TaskTypeCreateView.as_view(), name="task-type-create"),
+    path(
+        "task-types/<int:pk>/update",
+        TaskTypeUpdateView.as_view(),
+        name="task-type-update",
+    ),
+    path(
+        "task=types/<int:pk>/delete",
+        TaskTypeDeleteView.as_view(),
+        name="task-type-delete",
+    ),
     path("projects/", ProjectListView.as_view(), name="projects-list"),
     path("projects/create", ProjectCreateView.as_view(), name="project-create"),
     path("projects/<int:pk>", ProjectDetailView.as_view(), name="project-detail"),
