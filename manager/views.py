@@ -7,7 +7,7 @@ from django.views import generic
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 from manager.forms import WorkerUpdateForm, WorkerCreationForm, TeamForm, ProjectForm
-from .models import Task, Project, Worker, Team, TaskType, Tag
+from .models import Task, Project, Worker, Team, TaskType, Tag, Position
 
 
 @login_required
@@ -187,3 +187,29 @@ class TagUpdateView(LoginRequiredMixin, generic.UpdateView):
 class TagDeleteView(LoginRequiredMixin, generic.DeleteView):
     model = Tag
     success_url = reverse_lazy("manager:tags-list")
+
+
+class PositionListView(LoginRequiredMixin, generic.ListView):
+    model = Position
+    paginate_by = 5
+
+
+class PositionDetailView(LoginRequiredMixin, generic.DetailView):
+    model = Position
+
+
+class PositionCreateView(LoginRequiredMixin, generic.CreateView):
+    model = Position
+    fields = "__all__"
+    success_url = reverse_lazy("manager:positions-list")
+
+
+class PositionUpdateView(LoginRequiredMixin, generic.UpdateView):
+    model = Position
+    fields = "__all__"
+    success_url = reverse_lazy("manager:positions-list")
+
+
+class PositionDeleteView(LoginRequiredMixin, generic.DeleteView):
+    model = Position
+    success_url = reverse_lazy("manager:positions-list")
