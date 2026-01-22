@@ -51,6 +51,9 @@ class ProjectCreateView(LoginRequiredMixin, generic.CreateView):
     form_class = ProjectForm
     template_name = "manager/project_form.html"
 
+    def get_success_url(self):
+        return reverse_lazy("manager:projects-list")
+
 
 class TeamListView(LoginRequiredMixin, generic.ListView):
     model = Team
