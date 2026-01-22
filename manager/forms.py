@@ -38,7 +38,7 @@ class TeamForm(forms.ModelForm):
             "members": forms.SelectMultiple(
                 attrs={
                     "class": "form-control tom-select",
-                    "placeholder": "Select members",
+                    "placeholder": "Select members...",
                 }
             ),
         }

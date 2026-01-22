@@ -15,7 +15,7 @@
                   <div class="col-md-6">
                     <div
                         class="input-group input-group-dynamic mb-4">
-                      <label class="form-label">{{ form.name.label }}</label>
+                      <label class="form-label"></label>
                       {{ form.name }}
                     </div>
                     {% if form.name.errors %}
@@ -56,7 +56,6 @@
               plugins: ['remove_button'],
               create: false,
               persist: false,
-              placeholder: "Search for a worker...",
               hideSelected: true,
               maxOptions: 100,
               render: {
@@ -70,5 +69,5 @@
           });
       });
   </script>
-  
+
 {% endblock %}
