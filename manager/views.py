@@ -22,13 +22,23 @@ class TaskListView(LoginRequiredMixin, generic.ListView):
     context_object_name = "tasks"
     ordering = ["deadline", "priority"]
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["title"] = "All Tasks"
+        return context
+
 
 class UserTaskListView(LoginRequiredMixin, generic.ListView):
     model = Task
-    page_paginate_by = 5
+    paginate_by = 5
     template_name = "manager/task_list.html"
     context_object_name = "tasks"
     ordering = ["deadline", "priority"]
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["title"] = "All My Tasks"
+        return context
 
     def get_queryset(self):
         return Task.objects.filter(assignees=self.request.user)
