@@ -125,3 +125,8 @@ class WorkerProfileUpdateView(LoginRequiredMixin, generic.UpdateView):
     form_class = WorkerUpdateForm
     template_name = "manager/worker_form.html"
     success_url = reverse_lazy("manager:workers-list")
+
+
+class WorkerDeleteView(LoginRequiredMixin, generic.DeleteView):
+    model = Worker
+    success_url = reverse_lazy("manager:workers-list")
