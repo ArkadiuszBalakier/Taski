@@ -49,9 +49,13 @@
                       Welcome, {{ request.user.username }}</h6>
                     <a href="{% url 'manager:worker-profile' %}" class="dropdown-item border-radius-md">Profile</a>
                     <hr class="horizontal dark my-2">
+                    <a href="{% url 'manager:workers-list' %}" class="dropdown-item border-radius-md">Workers</a>
                     <a href="{% url 'manager:worker-create' %}" class="dropdown-item border-radius-md">Create new
                       worker</a>
-                    <a href="{% url 'manager:workers-list' %}" class="dropdown-item border-radius-md">Workers</a>
+                    <hr class="horizontal dark my-2">
+                    <a href="{% url 'manager:projects-list' %}" class="dropdown-item border-radius-md">Projects</a>
+                    <a href="{% url 'manager:project-create' %}" class="dropdown-item border-radius-md">Create new
+                      Project</a>
                     <hr class="horizontal dark my-2">
                     <form method="post" action="{% url 'logout' %}">
                       {% csrf_token %}
