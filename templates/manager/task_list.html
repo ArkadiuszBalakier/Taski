@@ -4,10 +4,9 @@
   <div class="container">
     <div class="row">
       <div class="col-12 mx-auto">
-        <div class="card card-body blur shadow-blur mx-3 mx-md-4 mt-n6 border-0 shadow-none"
+        <div class="card card-body blur shadow-blur mx-3 mx-md-4 border-0 shadow-none"
              style="background: rgba(255, 255, 255, 0.8) !important;
             backdrop-filter: blur(10px) saturate(120%) !important;">
-
           <h3 class="mb-4 text-center text-dark font-weight-bold">{{ title }}({{ paginator.count }})</h3>
 
           <ul class="list-group bg-transparent">
@@ -15,14 +14,15 @@
               <li class="list-group-item d-flex align-items-center justify-content-between border-bottom py-3 bg-transparent mb-1 move-on-hover"
                   style="background: rgba(255, 255, 255, 0.5) !important;
                    border-radius: 10px !important;">
-
-                <div class="d-flex align-items-center">
-                  <i class="material-icons me-3 {% if task.is_completed %}text-success{% else %}text-secondary{% endif %}">
-                    {% if task.is_completed %}check_circle{% else %}radio_button_unchecked{% endif %}
-                  </i>
-                  <span class="text-dark font-weight-bold">{{ task.name }}</span>
-                </div>
-
+                <form action="{% url "manager:task-toggle" pk=task.id %}" method="post">
+                  {% csrf_token %}
+                  <button type="submit" class="btn p-0 border-0 bg-transparent shadow-none">
+                    <i class="material-icons me-3 {% if task.is_completed %}text-success{% else %}text-secondary{% endif %}">
+                      {% if task.is_completed %}check_circle{% else %}radio_button_unchecked{% endif %}
+                    </i>
+                    <span class="text-dark font-weight-bold">{{ task.name }}</span>
+                  </button>
+                </form>
                 <div class="d-flex align-items-center gap-2">
             <span class="badge btn-sm
               {% if task.priority == 'Urgent' %}
