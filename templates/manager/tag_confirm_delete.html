@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <div class="container mt-5">
+    <div class="row">
+      <div class="col-lg-8 mx-auto">
+        <div class="card shadow-lg border-0">
+          <div class="card-header bg-gradient-faded-white p-4">
+            <h4 class="text-info mb-0">Delete tag : {{ tag.name }} ?</h4>
+          </div>
+          <form action="" method="post" style="display: inline-block">
+            {% csrf_token %}
+            <div class="d-flex align-items-center justify-content-end gap-4 p-2">
+
+              <button type="submit" value="Yes" class="btn btn-danger">
+                Yes
+              </button>
+              <a href="{% url 'manager:teams-list' %}" class="btn btn-info">No</a>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
