@@ -7,7 +7,7 @@ from django.views import generic
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 from manager.forms import WorkerUpdateForm, WorkerCreationForm, TeamForm, ProjectForm
-from .models import Task, Project, Worker, Team
+from .models import Task, Project, Worker, Team, TaskType
 
 
 @login_required
@@ -18,6 +18,26 @@ def index(request):
 class TaskListView(LoginRequiredMixin, generic.ListView):
     model = Task
     paginate_by = 5
+
+
+class TaskTypeListView(LoginRequiredMixin, generic.ListView):
+    model = TaskType
+    paginate_by = 5
+
+
+class TaskTypeUpdateView(LoginRequiredMixin, generic.UpdateView):
+    model = Task
+    success_url = reverse_lazy("manager:task-type-list")
+
+
+class TaskTypeCreateView(LoginRequiredMixin, generic.CreateView):
+    model = Task
+    success_url = reverse_lazy("manager:task-type-list")
+
+
+class TaskTypeDeleteView(LoginRequiredMixin, generic.DeleteView):
+    model = Task
+    success_url = reverse_lazy("manager:task-type-list")
 
 
 class ProjectListView(LoginRequiredMixin, generic.ListView):
