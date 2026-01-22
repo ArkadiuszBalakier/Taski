@@ -6,7 +6,14 @@ from django.urls import reverse_lazy
 from django.views import generic, View
 from django.contrib.auth.mixins import LoginRequiredMixin
 
-from manager.forms import WorkerUpdateForm, WorkerCreationForm, TeamForm, ProjectForm
+from manager.forms import (
+    WorkerUpdateForm,
+    WorkerCreationForm,
+    TeamForm,
+    ProjectForm,
+    TaskTypeForm,
+    TagForm,
+)
 from .models import Task, Project, Worker, Team, TaskType, Tag, Position
 
 
@@ -61,14 +68,14 @@ class TaskTypeListView(LoginRequiredMixin, generic.ListView):
 
 class TaskTypeUpdateView(LoginRequiredMixin, generic.UpdateView):
     model = TaskType
-    fields = "__all__"
+    form_class = TaskTypeForm
     success_url = reverse_lazy("manager:task-type-list")
     template_name = "manager/task_type_form.html"
 
 
 class TaskTypeCreateView(LoginRequiredMixin, generic.CreateView):
     model = TaskType
-    fields = "__all__"
+    form_class = TaskTypeForm
     success_url = reverse_lazy("manager:task-type-list")
     template_name = "manager/task_type_form.html"
 
@@ -206,13 +213,13 @@ class TagListView(LoginRequiredMixin, generic.ListView):
 
 class TagCreateView(LoginRequiredMixin, generic.CreateView):
     model = Tag
-    fields = "__all__"
+    form_class = TagForm
     success_url = reverse_lazy("manager:tags-list")
 
 
 class TagUpdateView(LoginRequiredMixin, generic.UpdateView):
     model = Tag
-    fields = "__all__"
+    form_class = TagForm
     success_url = reverse_lazy("manager:tags-list")
 
 

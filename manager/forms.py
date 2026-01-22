@@ -1,7 +1,8 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 
-from manager.models import Worker, Team, Project
+from manager.validators import alphanumeric_validator
+from manager.models import Worker, Team, Project, Tag, TaskType
 
 
 class WorkerCreationForm(UserCreationForm):
@@ -35,9 +36,15 @@ class TeamForm(forms.ModelForm):
         model = Team
         fields = ("name", "members")
         widgets = {
+            "name": forms.TextInput(
+                attrs={
+                    "class": "form-control",
+                    "placeholder": "Enter your team name...",
+                }
+            ),
             "members": forms.SelectMultiple(
                 attrs={
-                    "class": "form-control tom-select",
+                    "class": "tom-select form-control",
                     "placeholder": "Select members...",
                 }
             ),
@@ -49,10 +56,45 @@ class ProjectForm(forms.ModelForm):
         model = Project
         fields = ("name", "description", "teams")
         widgets = {
+            "name": forms.TextInput(
+                attrs={
+                    "class": "form-control",
+                }
+            ),
+            "description": forms.Textarea(
+                attrs={
+                    "class": "form-control",
+                    "placeholder": "Enter your project description...",
+                }
+            ),
             "teams": forms.SelectMultiple(
                 attrs={
                     "class": "form-control tom-select",
                     "placeholder": "Select teams for this projects...",
                 }
-            )
+            ),
         }
+
+
+class NameValidationForm(forms.ModelForm):
+    name = forms.CharField(
+        validators=[alphanumeric_validator],
+        widget=forms.TextInput(
+            attrs={
+                "class": "form-control",
+                "placeholder": "Enter name...",
+            }
+        ),
+    )
+
+
+class TagForm(NameValidationForm):
+    class Meta:
+        model = Tag
+        fields = ["name"]
+
+
+class TaskTypeForm(NameValidationForm):
+    class Meta:
+        model = TaskType
+        fields = ["name"]

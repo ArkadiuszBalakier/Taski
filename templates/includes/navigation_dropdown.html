@@ -11,7 +11,7 @@
     {% if request.user.is_authenticated %}
       <h6 class="dropdown-header text-dark font-weight-bolder px-1">
         Welcome, {{ request.user.username }}</h6>
-      <a href="{% url 'manager:worker-profile' %}" class="dropdown-item border-radius-md">All Profile</a>
+      <a href="{% url 'manager:worker-profile' %}" class="dropdown-item border-radius-md">Profile</a>
       <hr class="horizontal dark my-2">
       <a href="{% url 'manager:workers-list' %}" class="dropdown-item border-radius-md">All Workers</a>
       <a href="{% url 'manager:worker-create' %}" class="dropdown-item border-radius-md">Create new
@@ -36,6 +36,11 @@
       <a href="{% url 'manager:tasks-list' %}" class="dropdown-item border-radius-md">All Tasks</a>
       <a href="{% url 'manager:position-create' %}" class="dropdown-item border-radius-md">Create new
         Task</a>
+      <hr class="horizontal dark my-2">
+      <hr class="horizontal dark my-2">
+      <a href="{% url 'manager:teams-list' %}" class="dropdown-item border-radius-md">All Teams</a>
+      <a href="{% url 'manager:team-create' %}" class="dropdown-item border-radius-md">Create new
+        Team</a>
       <hr class="horizontal dark my-2">
       <form method="post" action="{% url 'logout' %}">
         {% csrf_token %}

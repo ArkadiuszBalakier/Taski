@@ -1,29 +1,35 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models
 
+from manager.validators import alphanumeric_validator
+
 
 class Position(models.Model):
-    name = models.CharField(max_length=250)
+    name = models.CharField(max_length=250, validators=[alphanumeric_validator])
 
     def __str__(self):
         return self.name
 
 
 class Tag(models.Model):
-    name = models.CharField(max_length=250, unique=True)
+    name = models.CharField(
+        max_length=250, unique=True, validators=[alphanumeric_validator]
+    )
 
     def __str__(self):
         return self.name
 
 
 class TaskType(models.Model):
-    name = models.CharField(max_length=250)
+    name = models.CharField(max_length=250, validators=[alphanumeric_validator])
 
     def __str__(self):
         return self.name
 
 
 class Worker(AbstractUser):
+    first_name = models.CharField(max_length=150, validators=[alphanumeric_validator])
+    last_name = models.CharField(max_length=150, validators=[alphanumeric_validator])
     position = models.ForeignKey(
         Position,
         on_delete=models.CASCADE,
@@ -34,7 +40,9 @@ class Worker(AbstractUser):
 
 
 class Team(models.Model):
-    name = models.CharField(max_length=250, unique=True)
+    name = models.CharField(
+        max_length=250, unique=True, validators=[alphanumeric_validator]
+    )
     members = models.ManyToManyField(Worker, related_name="teams")
 
     def __str__(self):
@@ -42,7 +50,7 @@ class Team(models.Model):
 
 
 class Project(models.Model):
-    name = models.CharField(max_length=250)
+    name = models.CharField(max_length=250, validators=[alphanumeric_validator])
     description = models.TextField()
     teams = models.ManyToManyField(Team, related_name="projects")
 
@@ -58,7 +66,7 @@ class Task(models.Model):
         ("Low", "Low"),
     ]
 
-    name = models.CharField(max_length=250)
+    name = models.CharField(max_length=250, validators=[alphanumeric_validator])
     description = models.TextField()
     deadline = models.DateTimeField()
     is_completed = models.BooleanField(default=False)
