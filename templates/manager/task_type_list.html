@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <div class="container">
+    <div class="row">
+      <div class="col-12 mx-auto">
+        <div class="card card-body blur shadow-blur mx-3 mx-md-4 mt-n6 border-0 shadow-none"
+             style="background: rgba(255, 255, 255, 0.8) !important;
+            backdrop-filter: blur(10px) saturate(120%) !important;">
+
+          <h3 class="mb-4 text-center text-dark font-weight-bold">Task type{{ task_type_list|length|pluralize }}
+            ({{ paginator.count }})</h3>
+
+          <ul class="list-group bg-transparent">
+            {% for task_type in task_type_list %}
+              <li class="list-group-item d-flex justify-content-between align-items-center border-0 mb-2 move-on-hover"
+                  style="background: rgba(255, 255, 255, 0.5) !important;
+                   border-radius: 10px !important;">
+                <div class="d-flex align-items-center gap-3">
+                  {{ task_type.name }}
+                </div>
+                <div class="d-flex align-items-center gap-3">
+                  <a class="text-secondary opacity-7 z-index-1"
+                     href="{% url "manager:task-type-update" pk=task_type.id %}">
+                    <i class="material-icons text-sm text-info">edit</i>
+                  </a>
+                  <a class="text-danger opacity-7 z-index-1"
+                     href="{% url "manager:team-delete" pk=task_type.id %}">
+                    <i class="material-icons text-sm">delete</i>
+                  </a>
+                </div>
+              </li>
+            {% endfor %}
+          </ul>
+          {% include "includes/pagination.html" %}
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
