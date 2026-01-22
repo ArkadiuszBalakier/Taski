@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block content %}
+
+  <div class="card card-body blur shadow-blur mx-3 mx-md-4 mb-4">
+    <section class="py-5">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-7 mx-auto d-flex justify-content-center flex-column">
+            <h3 class="text-center">{{ object|yesno:"Update,Create" }} task type</h3>
+
+            <form method="post" autocomplete="off">
+              {% csrf_token %}
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-md-6">
+                    <div
+                        class="input-group input-group-dynamic mb-4">
+                      <label class="form-label"></label>
+                      {{ form.name }}
+                    </div>
+                    {% if form.name.errors %}
+                      <span class="text-danger text-xs">{{ form.name.errors.0 }}</span>
+                    {% endif %}
+                  </div>
+                </div>
+                <div class="row mt-4">
+                  <div class="col-md-12">
+                    <button type="submit" class="btn bg-gradient-dark w-100">{{ object|yesno:"Update,Create" }} team
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+{% endblock %}

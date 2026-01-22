@@ -29,12 +29,14 @@ class TaskTypeListView(LoginRequiredMixin, generic.ListView):
 
 class TaskTypeUpdateView(LoginRequiredMixin, generic.UpdateView):
     model = TaskType
+    fields = "__all__"
     success_url = reverse_lazy("manager:task-type-list")
     template_name = "manager/task_type_form.html"
 
 
 class TaskTypeCreateView(LoginRequiredMixin, generic.CreateView):
     model = TaskType
+    fields = "__all__"
     success_url = reverse_lazy("manager:task-type-list")
     template_name = "manager/task_type_form.html"
 
