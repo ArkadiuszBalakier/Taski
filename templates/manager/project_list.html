@@ -25,7 +25,8 @@
                        href="{% url "manager:project-update" pk=project.id %}">
                       <i class="material-icons text-sm">edit</i>
                     </a>
-                    <a class="text-secondary opacity-7 text-danger z-index-1" href="#">
+                    <a class="text-secondary opacity-7 text-danger z-index-1"
+                       href="{% url 'manager:project-delete' pk=project.id %}">
                       <i class="material-icons text-sm">delete</i>
                     </a>
                   </div>
