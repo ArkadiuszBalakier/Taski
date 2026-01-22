@@ -15,6 +15,7 @@ from .views import (
     ProjectDetailView,
     ProjectUpdateView,
     WorkerDeleteView,
+    ProjectCreateView,
 )
 
 app_name = "manager"
@@ -22,6 +23,7 @@ urlpatterns = [
     path("", views.index, name="index"),
     path("tasks/", TaskListView.as_view(), name="tasks-list"),
     path("projects/", ProjectListView.as_view(), name="projects-list"),
+    path("projects/create", ProjectCreateView.as_view(), name="project-create"),
     path("projects/<int:pk>", ProjectDetailView.as_view(), name="project-detail"),
     path(
         "projects/<int:pk>/update", ProjectUpdateView.as_view(), name="project-update"
