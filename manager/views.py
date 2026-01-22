@@ -46,6 +46,12 @@ class ProjectUpdateView(LoginRequiredMixin, generic.UpdateView):
         return reverse_lazy("manager:projects-list")
 
 
+class ProjectCreateView(LoginRequiredMixin, generic.CreateView):
+    model = Project
+    form_class = ProjectForm
+    template_name = "manager/project_form.html"
+
+
 class TeamListView(LoginRequiredMixin, generic.ListView):
     model = Team
     paginate_by = 5
@@ -111,11 +117,11 @@ class WorkerCreateView(LoginRequiredMixin, generic.CreateView):
     model = Worker
     form_class = WorkerCreationForm
     template_name = "manager/worker_form.html"
-    success_url = reverse_lazy("manager:worker-profile")
+    success_url = reverse_lazy("manager:workers-list")
 
 
 class WorkerProfileUpdateView(LoginRequiredMixin, generic.UpdateView):
     model = Worker
     form_class = WorkerUpdateForm
     template_name = "manager/worker_form.html"
-    success_url = reverse_lazy("manager:worker-profile")
+    success_url = reverse_lazy("manager:workers-list")

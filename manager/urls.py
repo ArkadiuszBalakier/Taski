@@ -31,11 +31,11 @@ urlpatterns = [
     path("teams/<int:pk>/update", TeamUpdateView.as_view(), name="team-update"),
     path("teams/<int:pk>/delete", TeamDeleteView.as_view(), name="team-delete"),
     path("workers/", WorkerListView.as_view(), name="workers-list"),
-    path("worker/profile/", WorkerDetailView.as_view(), name="worker-profile"),
+    path("workers/profile/", WorkerDetailView.as_view(), name="worker-profile"),
     path(
-        "worker/profile/<int:pk>/update",
+        "workers/<int:pk>/update",
         WorkerProfileUpdateView.as_view(),
         name="worker-update",
     ),
-    path("worker/create", WorkerCreateView.as_view(), name="worker-create"),
+    path("workers/create", WorkerCreateView.as_view(), name="worker-create"),
 ]
