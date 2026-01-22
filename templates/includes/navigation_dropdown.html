@@ -11,27 +11,31 @@
     {% if request.user.is_authenticated %}
       <h6 class="dropdown-header text-dark font-weight-bolder px-1">
         Welcome, {{ request.user.username }}</h6>
-      <a href="{% url 'manager:worker-profile' %}" class="dropdown-item border-radius-md">Profile</a>
+      <a href="{% url 'manager:worker-profile' %}" class="dropdown-item border-radius-md">All Profile</a>
       <hr class="horizontal dark my-2">
-      <a href="{% url 'manager:workers-list' %}" class="dropdown-item border-radius-md">Workers</a>
+      <a href="{% url 'manager:workers-list' %}" class="dropdown-item border-radius-md">All Workers</a>
       <a href="{% url 'manager:worker-create' %}" class="dropdown-item border-radius-md">Create new
         worker</a>
       <hr class="horizontal dark my-2">
-      <a href="{% url 'manager:projects-list' %}" class="dropdown-item border-radius-md">Projects</a>
+      <a href="{% url 'manager:projects-list' %}" class="dropdown-item border-radius-md">All Projects</a>
       <a href="{% url 'manager:project-create' %}" class="dropdown-item border-radius-md">Create new
         Project</a>
       <hr class="horizontal dark my-2">
-      <a href="{% url 'manager:task-types-list' %}" class="dropdown-item border-radius-md">Task Types</a>
+      <a href="{% url 'manager:task-types-list' %}" class="dropdown-item border-radius-md">All Task Types</a>
       <a href="{% url 'manager:task-type-create' %}" class="dropdown-item border-radius-md">Create new
         Task type</a>
       <hr class="horizontal dark my-2">
-      <a href="{% url 'manager:tags-list' %}" class="dropdown-item border-radius-md">Tags</a>
+      <a href="{% url 'manager:tags-list' %}" class="dropdown-item border-radius-md">All Tags</a>
       <a href="{% url 'manager:tag-create' %}" class="dropdown-item border-radius-md">Create new
         Tag</a>
       <hr class="horizontal dark my-2">
       <a href="{% url 'manager:positions-list' %}" class="dropdown-item border-radius-md">Positions</a>
       <a href="{% url 'manager:position-create' %}" class="dropdown-item border-radius-md">Create new
         Position</a>
+      <hr class="horizontal dark my-2">
+      <a href="{% url 'manager:tasks-list' %}" class="dropdown-item border-radius-md">All Tasks</a>
+      <a href="{% url 'manager:position-create' %}" class="dropdown-item border-radius-md">Create new
+        Task</a>
       <hr class="horizontal dark my-2">
       <form method="post" action="{% url 'logout' %}">
         {% csrf_token %}
