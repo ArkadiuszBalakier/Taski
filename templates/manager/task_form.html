@@ -1,0 +1,136 @@
+{% extends "base.html" %}
+{% block content %}
+
+  <div class="card card-body blur shadow-blur mx-3 mx-md-4 mb-4">
+    <section class="py-5">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-7 mx-auto d-flex justify-content-center flex-column">
+            <h3 class="text-center">{{ object|yesno:"Update,Create" }} user</h3>
+
+            <form method="post" autocomplete="off">
+              {% csrf_token %}
+              <div class="card-body">
+
+                <div class="row">
+                  <div class="col-md-6">
+                    <div
+                        class="input-group input-group-dynamic mb-4 {% if form.name.value %}is-filled{% endif %}">
+                      <label class="form-label">{{ form.name.label }}</label>
+                      {{ form.name }}
+                    </div>
+                    {% if form.name.errors %}
+                      <span class="text-danger text-xs">{{ form.name.errors.0 }}</span>
+                    {% endif %}
+                  </div>
+                  <div class="col-md-6">
+                    <div
+                        class="input-group input-group-dynamic mb-4 {% if form.description.value %}is-filled{% endif %}">
+                      <label class="form-label">{{ form.description.label }}</label>
+                      {{ form.description }}
+                    </div>
+                    {% if form.description.errors %}
+                      <span class="text-danger text-xs">{{ form.description.errors.0 }}</span>
+                    {% endif %}
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="input-group input-group-dynamic mb-4 {% if form.deadline.value %}is-filled{% endif %}">
+                      <label class="form-label">{{ form.deadline.label }}</label>
+                      {{ form.deadline }}
+                    </div>
+                    {% if form.deadline.errors %}
+                      <span class="text-danger text-xs">{{ form.deadline.errors.0 }}</span>
+                    {% endif %}
+                  </div>
+                  <div class="col-md-6">
+                    <div class="input-group input-group-dynamic mb-4 {% if form.priority.value %}is-filled{% endif %}">
+                      <label class="form-label">{{ form.priority.label }}</label>
+                      {{ form.priority }}
+                    </div>
+                    {% if form.priority.errors %}
+                      <span class="text-danger text-xs">{{ form.priority.errors.0 }}</span>
+                    {% endif %}
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="input-group input-group-dynamic mb-4 {% if form.task_type.value %}is-filled{% endif %}">
+                      <label class="form-label">{{ form.task_type.label }}</label>
+                      {{ form.task_type }}
+                    </div>
+                    {% if form.task_type.errors %}
+                      <span class="text-danger text-xs">{{ form.task_type.errors.0 }}</span>
+                    {% endif %}
+                  </div>
+                  <div class="col-md-6">
+                    <div class="input-group input-group-dynamic mb-4 {% if form.tags.value %}is-filled{% endif %}">
+                      <label class="form-label">{{ form.tags.label }}</label>
+                      {{ form.tags }}
+                    </div>
+                    {% if form.tags.errors %}
+                      <span class="text-danger text-xs">{{ form.tags.errors.0 }}</span>
+                    {% endif %}
+                  </div>
+                </div>
+              </div>
+              <div class="mb-4">
+                <div class="input-group input-group-static">
+                  <label>{{ form.assignees.label }}</label>
+                  {{ form.assignees }}
+                </div>
+                {% if form.assignees.errors %}
+                  <span class="text-danger text-xs">{{ form.assignees.errors.0 }}</span>
+                {% endif %}
+              </div>
+              <div class="mb-4">
+                <div class="input-group input-group-static">
+                  <label>{{ form.project.label }}</label>
+                  {{ form.project }}
+                </div>
+                {% if form.project.errors %}
+                  <span class="text-danger text-xs">{{ form.project.errors.0 }}</span>
+                {% endif %}
+              </div>
+
+
+              <div class="row mt-4">
+                <div class="col-md-12">
+                  <button type="submit" class="btn bg-gradient-dark w-100">{{ object|yesno:"Update,Create" }} user
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <link href="https://cdn.jsdelivr.net/npm/tom-select@2.2.2/dist/css/tom-select.bootstrap5.min.css" rel="stylesheet">
+
+  <script src="https://cdn.jsdelivr.net/npm/tom-select@2.2.2/dist/js/tom-select.complete.min.js"></script>
+
+  <script>
+      document.addEventListener("DOMContentLoaded", function () {
+          new TomSelect(".tom-select", {
+              plugins: ['remove_button'],
+              create: false,
+              persist: false,
+              hideSelected: true,
+              maxOptions: 100,
+              render: {
+                  option: function (data, escape) {
+                      return `<div><i class="material-icons text-sm me-2">person</i>${escape(data.text)}</div>`;
+                  },
+                  item: function (data, escape) {
+                      return `<div class="badge bg-gradient-primary m-1" style="border-radius: 5px;">${escape(data.text)}</div>`;
+                  }
+              }
+          });
+      });
+  </script>
+  
+{% endblock %}
