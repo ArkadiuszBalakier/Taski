@@ -33,6 +33,7 @@ from .views import (
     TaskToggleView,
     LoggedWorkerDetailView,
     TaskDetailView,
+    TaskCreateView,
 )
 
 app_name = "manager"
@@ -42,6 +43,7 @@ urlpatterns = [
     path("user-tasks/", UserTaskListView.as_view(), name="user-tasks-list"),
     path("tasks/<int:pk>/", TaskDetailView.as_view(), name="task-detail"),
     path("tasks/<int:pk>/toggle/", TaskToggleView.as_view(), name="task-toggle"),
+    path("tasks/create", TaskCreateView.as_view(), name="task-create"),
     path("task-types/", TaskTypeListView.as_view(), name="task-types-list"),
     path("task-types/create", TaskTypeCreateView.as_view(), name="task-type-create"),
     path(

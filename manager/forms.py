@@ -55,6 +55,7 @@ class TaskForm(forms.ModelForm):
                 attrs={
                     "class": "form-control",
                     "placeholder": "Enter your task description...",
+                    "rows": 1,
                 }
             ),
             "deadline": forms.DateInput(
@@ -82,7 +83,7 @@ class TaskForm(forms.ModelForm):
             ),
             "assignees": forms.SelectMultiple(
                 attrs={
-                    "class": "form-control tom-select",
+                    "class": "tom-select form-control",
                     "placeholder": "Assign workers...",
                 }
             ),
