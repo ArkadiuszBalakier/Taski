@@ -66,6 +66,13 @@ class TaskCreateView(LoginRequiredMixin, generic.CreateView):
         return reverse_lazy("manager:tasks-list")
 
 
+class TaskUpdateView(LoginRequiredMixin, generic.UpdateView):
+    model = Task
+    form_class = TaskForm
+    template_name = "manager/task_form.html"
+    success_url = reverse_lazy("manager:tasks-list")
+
+
 class TaskToggleView(View):
     def post(self, request, *args, **kwargs):
         task = Task.objects.get(pk=self.kwargs["pk"])

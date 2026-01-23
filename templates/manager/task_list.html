@@ -14,9 +14,9 @@
               <li class="list-group-item d-flex align-items-center justify-content-between border-bottom bg-transparent move-on-hover mb-1 position-relative"
                   style="background: rgba(255, 255, 255, 0.5) !important;
                    border-radius: 10px !important;">
-                <form action="{% url "manager:task-toggle" pk=task.id %}" method="post">
+                <form action="{% url "manager:task-toggle" pk=task.id %}" method="post" class="z-index-2">
                   {% csrf_token %}
-                  <button type="submit" class="btn p-0 border-0 bg-transparent shadow-none">
+                  <button type="submit" class="btn p-0 border-0 bg-transparent shadow-none ">
                     <i class="material-icons me-3 {% if task.is_completed %}text-success{% else %}text-secondary{% endif %}">
                       {% if task.is_completed %}check_circle{% else %}radio_button_unchecked{% endif %}
                     </i>
@@ -40,10 +40,10 @@
                     </span>
                   <p class="lead mb-0" style="min-width: 200px">{{ task.deadline|date:"M. d, Y, g a" }}</p>
                   <div class="d-flex gap-3">
-                    <a href="#" class="text-info opacity-7">
+                    <a href="{% url "manager:task-update" pk=task.id %}" class="text-info opacity-7 z-index-1">
                       <i class="material-icons text-sm">edit</i>
                     </a>
-                    <a href="#" class="text-primary opacity-7">
+                    <a href="#" class="text-primary opacity-7 z-index-1">
                       <i class="material-icons text-sm">delete</i>
                     </a>
                   </div>
