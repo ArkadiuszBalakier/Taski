@@ -52,6 +52,10 @@ class UserTaskListView(LoginRequiredMixin, generic.ListView):
         return Task.objects.filter(assignees=self.request.user)
 
 
+class TaskDetailView(LoginRequiredMixin, generic.DetailView):
+    model = Task
+
+
 class TaskToggleView(View):
     def post(self, request, *args, **kwargs):
         task = Task.objects.get(pk=self.kwargs["pk"])
@@ -181,6 +185,12 @@ class WorkerListView(LoginRequiredMixin, generic.ListView):
 
 
 class WorkerDetailView(LoginRequiredMixin, generic.DetailView):
+    model = Worker
+    template_name = "manager/worker_detail.html"
+    context_object_name = "worker_profile"
+
+
+class LoggedWorkerDetailView(LoginRequiredMixin, generic.DetailView):
     model = Worker
     context_object_name = "worker_profile"
 

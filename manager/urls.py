@@ -31,6 +31,7 @@ from .views import (
     PositionDeleteView,
     UserTaskListView,
     TaskToggleView,
+    LoggedWorkerDetailView,
 )
 
 app_name = "manager"
@@ -66,7 +67,8 @@ urlpatterns = [
     path("teams/<int:pk>/update", TeamUpdateView.as_view(), name="team-update"),
     path("teams/<int:pk>/delete", TeamDeleteView.as_view(), name="team-delete"),
     path("workers/", WorkerListView.as_view(), name="workers-list"),
-    path("workers/profile/", WorkerDetailView.as_view(), name="worker-profile"),
+    path("workers/<int:pk>/", WorkerDetailView.as_view(), name="worker-detail"),
+    path("workers/profile/", LoggedWorkerDetailView.as_view(), name="worker-profile"),
     path(
         "workers/<int:pk>/update",
         WorkerProfileUpdateView.as_view(),

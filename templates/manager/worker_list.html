@@ -13,15 +13,17 @@
 
           <ul class="list-group bg-transparent">
             {% for worker in object_list %}
+
               <li class="list-group-item d-flex align-items-center justify-content-between border-bottom py-3 bg-transparent mb-1 move-on-hover"
                   style="background: rgba(255, 255, 255, 0.5) !important;
                    border-radius: 10px !important;">
-
                 <div style="flex: 2;">
-                  <h6 class="mb-0 text-dark font-weight-bold">{{ worker.first_name }} {{ worker.last_name }}</h6>
-                  <p class="text-xs text-secondary mb-0">
-                    <i class="material-icons text-xs">work</i> {{ worker.position|default:"No position" }}
-                  </p>
+                  <a href="{% url 'manager:worker-detail' pk=worker.id %}" class="stretched-link">
+                    <h6 class="mb-0 text-dark font-weight-bold">{{ worker.first_name }} {{ worker.last_name }}</h6>
+                    <p class="text-xs text-secondary mb-0">
+                      <i class="material-icons text-xs">work</i> {{ worker.position|default:"No position" }}
+                    </p>
+                  </a>
                 </div>
 
                 <div class="d-flex text-center" style="flex: 3;">
@@ -36,10 +38,10 @@
                 </div>
 
                 <div class="d-flex align-items-center justify-content-end gap-3" style="flex: 1;">
-                  <a href="{% url 'manager:worker-update' pk=worker.id %}" class="btn btn-link text-info">
+                  <a href="{% url 'manager:worker-update' pk=worker.id %}" class="btn btn-link text-info z-index-1">
                     <i class="material-icons text-sm">edit</i>
                   </a>
-                  <a href="{% url 'manager:worker-delete' pk=worker.id %}" class="btn btn-link text-danger">
+                  <a href="{% url 'manager:worker-delete' pk=worker.id %}" class="btn btn-link text-danger z-index-1">
                     <i class="material-icons text-sm">delete</i>
                   </a>
                 </div>
