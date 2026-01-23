@@ -1,0 +1,365 @@
+[
+  {
+    "model": "manager.position",
+    "pk": 1,
+    "fields": {
+      "name": "Python Developer"
+    }
+  },
+  {
+    "model": "manager.position",
+    "pk": 2,
+    "fields": {
+      "name": "Project Manager"
+    }
+  },
+  {
+    "model": "manager.position",
+    "pk": 3,
+    "fields": {
+      "name": "QA Engineer"
+    }
+  },
+  {
+    "model": "manager.position",
+    "pk": 4,
+    "fields": {
+      "name": "UI UX Designer"
+    }
+  },
+  {
+    "model": "manager.position",
+    "pk": 5,
+    "fields": {
+      "name": "DevOps Engineer"
+    }
+  },
+  {
+    "model": "manager.tag",
+    "pk": 1,
+    "fields": {
+      "name": "Bug"
+    }
+  },
+  {
+    "model": "manager.tag",
+    "pk": 2,
+    "fields": {
+      "name": "Feature"
+    }
+  },
+  {
+    "model": "manager.tag",
+    "pk": 3,
+    "fields": {
+      "name": "Refactoring"
+    }
+  },
+  {
+    "model": "manager.tag",
+    "pk": 4,
+    "fields": {
+      "name": "Documentation"
+    }
+  },
+  {
+    "model": "manager.tag",
+    "pk": 5,
+    "fields": {
+      "name": "Urgent-Fix"
+    }
+  },
+  {
+    "model": "manager.tasktype",
+    "pk": 1,
+    "fields": {
+      "name": "Development"
+    }
+  },
+  {
+    "model": "manager.tasktype",
+    "pk": 2,
+    "fields": {
+      "name": "Testing"
+    }
+  },
+  {
+    "model": "manager.tasktype",
+    "pk": 3,
+    "fields": {
+      "name": "Meeting"
+    }
+  },
+  {
+    "model": "manager.tasktype",
+    "pk": 4,
+    "fields": {
+      "name": "Research"
+    }
+  },
+  {
+    "model": "manager.tasktype",
+    "pk": 5,
+    "fields": {
+      "name": "Deployment"
+    }
+  },
+  {
+    "model": "manager.worker",
+    "pk": 1,
+    "fields": {
+      "password": "pbkdf2_sha256$260000$xyz",
+      "username": "jdoe",
+      "first_name": "John",
+      "last_name": "Doe",
+      "position": 1,
+      "is_superuser": false,
+      "is_staff": true,
+      "is_active": true
+    }
+  },
+  {
+    "model": "manager.worker",
+    "pk": 2,
+    "fields": {
+      "password": "pbkdf2_sha256$260000$xyz",
+      "username": "asmith",
+      "first_name": "Alice",
+      "last_name": "Smith",
+      "position": 2,
+      "is_superuser": false,
+      "is_staff": true,
+      "is_active": true
+    }
+  },
+  {
+    "model": "manager.worker",
+    "pk": 3,
+    "fields": {
+      "username": "mscott",
+      "first_name": "Michael",
+      "last_name": "Scott",
+      "position": 2
+    }
+  },
+  {
+    "model": "manager.worker",
+    "pk": 4,
+    "fields": {
+      "username": "pbeesly",
+      "first_name": "Pam",
+      "last_name": "Beesly",
+      "position": 4
+    }
+  },
+  {
+    "model": "manager.worker",
+    "pk": 5,
+    "fields": {
+      "username": "dwightk",
+      "first_name": "Dwight",
+      "last_name": "Schrute",
+      "position": 3
+    }
+  },
+  {
+    "model": "manager.team",
+    "pk": 1,
+    "fields": {
+      "name": "Alpha Team",
+      "members": [
+        1,
+        2,
+        5
+      ]
+    }
+  },
+  {
+    "model": "manager.team",
+    "pk": 2,
+    "fields": {
+      "name": "Beta Team",
+      "members": [
+        3,
+        4
+      ]
+    }
+  },
+  {
+    "model": "manager.project",
+    "pk": 1,
+    "fields": {
+      "name": "E-commerce Platform",
+      "description": "Building a modern shopping experience.",
+      "teams": [
+        1,
+        2
+      ]
+    }
+  },
+  {
+    "model": "manager.project",
+    "pk": 2,
+    "fields": {
+      "name": "Mobile App",
+      "description": "iOS and Android application development.",
+      "teams": [
+        1
+      ]
+    }
+  },
+  {
+    "model": "manager.task",
+    "pk": 1,
+    "fields": {
+      "name": "Setup Database",
+      "description": "Configure PostgreSQL for production.",
+      "deadline": "2026-02-01T12:00:00Z",
+      "is_completed": false,
+      "priority": "High",
+      "task_type": 1,
+      "tags": [
+        2
+      ],
+      "assignees": [
+        1
+      ],
+      "project": 1
+    }
+  },
+  {
+    "model": "manager.task",
+    "pk": 2,
+    "fields": {
+      "name": "Fix Login Bug",
+      "description": "Users cannot login with social accounts.",
+      "deadline": "2026-01-25T10:00:00Z",
+      "is_completed": false,
+      "priority": "Urgent",
+      "task_type": 1,
+      "tags": [
+        1,
+        5
+      ],
+      "assignees": [
+        1,
+        5
+      ],
+      "project": 1
+    }
+  },
+  {
+    "model": "manager.task",
+    "pk": 3,
+    "fields": {
+      "name": "Update Documentation",
+      "description": "Refresh the API docs for v2.",
+      "deadline": "2026-03-10T15:00:00Z",
+      "is_completed": true,
+      "priority": "Low",
+      "task_type": 4,
+      "tags": [
+        4
+      ],
+      "assignees": [
+        2,
+        4
+      ],
+      "project": 1
+    }
+  },
+  {
+    "model": "manager.task",
+    "pk": 4,
+    "fields": {
+      "name": "Client Meeting",
+      "description": "Discuss project milestones.",
+      "deadline": "2026-01-28T09:00:00Z",
+      "is_completed": false,
+      "priority": "Medium",
+      "task_type": 3,
+      "tags": [],
+      "assignees": [
+        2,
+        3
+      ],
+      "project": 1
+    }
+  },
+  {
+    "model": "manager.task",
+    "pk": 5,
+    "fields": {
+      "name": "Performance Testing",
+      "description": "Run load tests on the checkout page.",
+      "deadline": "2026-02-05T14:00:00Z",
+      "is_completed": false,
+      "priority": "High",
+      "task_type": 2,
+      "tags": [
+        1
+      ],
+      "assignees": [
+        5
+      ],
+      "project": 1
+    }
+  },
+  {
+    "model": "manager.task",
+    "pk": 6,
+    "fields": {
+      "name": "Design Homepage",
+      "description": "Create wireframes for the new landing page.",
+      "deadline": "2026-02-15T11:00:00Z",
+      "is_completed": false,
+      "priority": "Medium",
+      "task_type": 4,
+      "tags": [
+        2
+      ],
+      "assignees": [
+        4
+      ],
+      "project": 2
+    }
+  },
+  {
+    "model": "manager.task",
+    "pk": 7,
+    "fields": {
+      "name": "Deploy to Staging",
+      "description": "Push the latest build to the staging server.",
+      "deadline": "2026-01-24T16:00:00Z",
+      "is_completed": false,
+      "priority": "Urgent",
+      "task_type": 5,
+      "tags": [
+        5
+      ],
+      "assignees": [
+        1
+      ],
+      "project": 2
+    }
+  },
+  {
+    "model": "manager.task",
+    "pk": 8,
+    "fields": {
+      "name": "Code Refactor",
+      "description": "Clean up the auth module.",
+      "deadline": "2026-03-01T17:00:00Z",
+      "is_completed": true,
+      "priority": "Medium",
+      "task_type": 1,
+      "tags": [
+        3
+      ],
+      "assignees": [
+        1
+      ],
+      "project": 2
+    }
+  }
+]
