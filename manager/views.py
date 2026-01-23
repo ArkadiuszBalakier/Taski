@@ -14,6 +14,7 @@ from manager.forms import (
     TaskTypeForm,
     TagForm,
     PositionForm,
+    TaskForm,
 )
 from .models import Task, Project, Worker, Team, TaskType, Tag, Position
 
@@ -54,6 +55,15 @@ class UserTaskListView(LoginRequiredMixin, generic.ListView):
 
 class TaskDetailView(LoginRequiredMixin, generic.DetailView):
     model = Task
+
+
+class TaskCreateView(LoginRequiredMixin, generic.CreateView):
+    model = Task
+    form_class = TaskForm
+    template_name = "manager/task_form.html"
+
+    def get_success_url(self):
+        return reverse_lazy("manager:tasks-list")
 
 
 class TaskToggleView(View):
