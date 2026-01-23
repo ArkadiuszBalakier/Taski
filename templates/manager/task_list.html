@@ -43,7 +43,7 @@
                     <a href="{% url "manager:task-update" pk=task.id %}" class="text-info opacity-7 z-index-1">
                       <i class="material-icons text-sm">edit</i>
                     </a>
-                    <a href="#" class="text-primary opacity-7 z-index-1">
+                    <a href="{% url "manager:task-delete" pk=task.id %}" class="text-primary opacity-7 z-index-1">
                       <i class="material-icons text-sm">delete</i>
                     </a>
                   </div>

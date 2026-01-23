@@ -73,6 +73,11 @@ class TaskUpdateView(LoginRequiredMixin, generic.UpdateView):
     success_url = reverse_lazy("manager:tasks-list")
 
 
+class TaskDeleteView(LoginRequiredMixin, generic.DeleteView):
+    model = Task
+    success_url = reverse_lazy("manager:tasks-list")
+
+
 class TaskToggleView(View):
     def post(self, request, *args, **kwargs):
         task = Task.objects.get(pk=self.kwargs["pk"])
