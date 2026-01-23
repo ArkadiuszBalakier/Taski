@@ -13,6 +13,7 @@ from manager.forms import (
     ProjectForm,
     TaskTypeForm,
     TagForm,
+    PositionForm,
 )
 from .models import Task, Project, Worker, Team, TaskType, Tag, Position
 
@@ -235,13 +236,13 @@ class PositionListView(LoginRequiredMixin, generic.ListView):
 
 class PositionCreateView(LoginRequiredMixin, generic.CreateView):
     model = Position
-    fields = "__all__"
+    form_class = PositionForm
     success_url = reverse_lazy("manager:positions-list")
 
 
 class PositionUpdateView(LoginRequiredMixin, generic.UpdateView):
     model = Position
-    fields = "__all__"
+    form_class = PositionForm
     success_url = reverse_lazy("manager:positions-list")
 
 

@@ -2,7 +2,7 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm
 
 from manager.validators import alphanumeric_validator
-from manager.models import Worker, Team, Project, Tag, TaskType
+from manager.models import Worker, Team, Project, Tag, TaskType, Position
 
 
 class WorkerCreationForm(UserCreationForm):
@@ -97,4 +97,10 @@ class TagForm(NameValidationForm):
 class TaskTypeForm(NameValidationForm):
     class Meta:
         model = TaskType
+        fields = ["name"]
+
+
+class PositionForm(NameValidationForm):
+    class Meta:
+        model = Position
         fields = ["name"]
