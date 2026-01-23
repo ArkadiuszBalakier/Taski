@@ -2,7 +2,7 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm
 
 from manager.validators import alphanumeric_validator
-from manager.models import Worker, Team, Project, Tag, TaskType, Position
+from manager.models import Worker, Team, Project, Tag, TaskType, Position, Task
 
 
 class WorkerCreationForm(UserCreationForm):
@@ -29,6 +29,70 @@ class WorkerUpdateForm(forms.ModelForm):
         super().__init__(*args, **kwargs)
         for field in self.fields.values():
             field.widget.attrs.update({"class": "form-control"})
+
+
+class TaskForm(forms.ModelForm):
+    class Meta:
+        model = Task
+        fields = (
+            "name",
+            "description",
+            "deadline",
+            "priority",
+            "task_type",
+            "tags",
+            "assignees",
+            "project",
+        )
+        widgets = {
+            "name": forms.TextInput(
+                attrs={
+                    "class": "form-control",
+                    "placeholder": "Enter your task name...",
+                }
+            ),
+            "description": forms.Textarea(
+                attrs={
+                    "class": "form-control",
+                    "placeholder": "Enter your task description...",
+                }
+            ),
+            "deadline": forms.DateInput(
+                attrs={
+                    "class": "input-group input-group-static my-3",
+                    "type": "date",
+                }
+            ),
+            "priority": forms.Select(
+                attrs={
+                    "class": "form-control tom-select",
+                }
+            ),
+            "task_type": forms.Select(
+                attrs={
+                    "class": "tom-select form-control",
+                    "placeholder": "Select task type...",
+                }
+            ),
+            "tags": forms.SelectMultiple(
+                attrs={
+                    "class": "form-control tom-select",
+                    "placeholder": "Select tags...",
+                }
+            ),
+            "assignees": forms.SelectMultiple(
+                attrs={
+                    "class": "form-control tom-select",
+                    "placeholder": "Assign workers...",
+                }
+            ),
+            "project": forms.Select(
+                attrs={
+                    "class": "form-control tom-select",
+                    "placeholder": "Select project...",
+                }
+            ),
+        }
 
 
 class TeamForm(forms.ModelForm):
