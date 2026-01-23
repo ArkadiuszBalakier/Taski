@@ -31,9 +31,15 @@ class TaskListView(LoginRequiredMixin, generic.ListView):
     context_object_name = "tasks"
     ordering = ["deadline", "priority"]
 
+    def get_queryset(self, **kwargs):
+        queryset = Task.objects.all()
+        show_completed = self.request.GET.get("completed") == "true"
+        return queryset.filter(is_completed=show_completed)
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["title"] = "All Tasks"
+        context["is_completed_view"] = self.request.GET.get("completed") == "true"
         return context
 
 
@@ -44,13 +50,16 @@ class UserTaskListView(LoginRequiredMixin, generic.ListView):
     context_object_name = "tasks"
     ordering = ["deadline", "priority"]
 
+    def get_queryset(self, **kwargs):
+        queryset = Task.objects.filter(assignees=self.request.user)
+        show_completed = self.request.GET.get("completed") == "true"
+        return queryset.filter(is_completed=show_completed)
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["title"] = "All My Tasks"
+        context["title"] = "My Tasks"
+        context["is_completed_view"] = self.request.GET.get("completed") == "true"
         return context
-
-    def get_queryset(self):
-        return Task.objects.filter(assignees=self.request.user)
 
 
 class TaskDetailView(LoginRequiredMixin, generic.DetailView):
