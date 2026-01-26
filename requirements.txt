@@ -42,10 +42,12 @@ pickleshare==0.7.5
 pipreqs==0.5.0
 platformdirs==4.5.1
 prompt_toolkit==3.0.52
+psycopg2-binary==2.9.11
 ptyprocess==0.7.0
 pure_eval==0.2.3
 Pygments==2.19.2
 python-dateutil==2.9.0.post0
+python-dotenv==1.2.1
 pytokens==0.3.0
 pyzmq==27.1.0
 referencing==0.37.0
